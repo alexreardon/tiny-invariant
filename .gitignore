@@ -11,12 +11,6 @@ node_modules/
 # generated files
 dist/
 
-# generated site
-site/
-
-# coverage reports
-coverage/
-
 # logs
 yarn-error.log
 npm-debug.log

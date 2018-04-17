@@ -1,3 +1,4 @@
 {
-  "presets": ["flow"]
+  "presets": ["flow", ["env", { "modules": false, "loose": true }]],
+  "comments": false
 }
