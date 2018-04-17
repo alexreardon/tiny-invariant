@@ -5,10 +5,7 @@
   "main": "dist/react-beautiful-dnd.cjs.js",
   "module": "dist/react-beautiful-dnd.esm.js",
   "sideEffects": false,
-  "files": [
-    "/dist",
-    "/src"
-  ],
+  "files": ["/dist", "/src"],
   "author": "Alex Reardon <alexreardon@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -16,7 +13,12 @@
     "lint": "yarn prettier --debug-check src/** test/**",
     "typecheck": "yarn flow",
     "validate": "yarn lint && yarn flow",
-    "build": "yarn rollup --config rollup.config.js"
+    "build:clean": "rimraf dist",
+    "build:flow":
+      "echo \"// @flow\n\nexport * from '../src';\" > dist/react-beautiful-dnd.cjs.js.flow",
+    "build:dist": "yarn rollup --config rollup.config.js",
+    "build": "yarn build:clean && yarn build:dist && yarn build:flow",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -26,6 +28,7 @@
     "flow-bin": "^0.70.0",
     "jest": "^22.4.3",
     "prettier": "^1.12.1",
+    "rimraf": "^2.6.2",
     "rollup": "^0.58.0",
     "rollup-plugin-babel": "^3.0.3"
   }
