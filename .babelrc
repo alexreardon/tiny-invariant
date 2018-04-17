@@ -1,4 +1,9 @@
 {
   "presets": ["flow", ["env", { "modules": false, "loose": true }]],
-  "comments": false
+  "comments": false,
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
