@@ -1,0 +1,13 @@
+language: node_js
+cache: yarn
+node_js:
+- '8.4'
+script:
+- yarn run validate
+- yarn run test
+# Required for lock file generation
+# https://github.com/greenkeeperio/greenkeeper-lockfile
+before_install: yarn global add greenkeeper-lockfile@1
+before_script:
+  - greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
