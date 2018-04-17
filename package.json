@@ -1,7 +1,7 @@
 {
   "name": "tiny-invariant",
   "version": "0.0.1",
-  "description": "A super tiny invariant function",
+  "description": "A tiny invariant function",
   "main": "dist/react-beautiful-dnd.cjs.js",
   "module": "dist/react-beautiful-dnd.esm.js",
   "sideEffects": false,
