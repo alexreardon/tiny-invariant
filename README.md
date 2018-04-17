@@ -4,8 +4,9 @@
 
 A `~100 byte` [`invariant`](https://www.npmjs.com/package/invariant) alternative.
 
-* We have dropped all of the message formatting logic that invariant has and simply allow you to pass a string. With `template ${'literals'}` now there is really no need for a custom message
+* We have dropped all of the message formatting logic that [`invariant`](https://www.npmjs.com/package/invariant) has and simply allow you to pass a string. With `template ${'literals'}` now there is really no need for a custom message
 * We support a es module build for deduplication
+* Full [flowtype](https://flowtype.org) support
 
 ## Usage
 
