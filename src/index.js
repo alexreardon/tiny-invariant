@@ -1,5 +1,4 @@
 // @flow
-
 const isProduction: boolean = process.env.NODE_ENV === 'production';
 const prefix: string = 'Invariant failed';
 
