@@ -2,11 +2,6 @@ import babel from 'rollup-plugin-babel';
 
 const input = 'src/index.js';
 
-const babelOptions = {
-  // only transpile our source code
-  exclude: 'node_modules/**',
-};
-
 export default [
   // ESM build
   {
