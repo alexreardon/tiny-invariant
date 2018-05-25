@@ -4,7 +4,7 @@
 
 A `~100 byte` [`invariant`](https://www.npmjs.com/package/invariant) alternative.
 
-* We have dropped all of the message formatting logic that [`invariant`](https://www.npmjs.com/package/invariant) has and simply allow you to pass a string. With `template ${'literals'}` now there is really no need for a custom message
+* The second argument for `invariant` is a `message`. `invariant` supports passing in messages in a sprintf style. It has internal logic to execute the sprintf substitutions. We have dropped all of this logic. We simply simply allow you to pass a string. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. You can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
 * We support a es module build for deduplication
 * Full [flowtype](https://flowtype.org) support
 
