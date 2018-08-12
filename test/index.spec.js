@@ -4,8 +4,8 @@ import { rollup } from 'rollup';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 
-const DEV_SIZE = 414;
-const PROD_SIZE = 535;
+const DEV_SIZE = 426;
+const PROD_SIZE = 431;
 
 const getSizeInMode = async ({ mode }) => {
   const bundle = await rollup({

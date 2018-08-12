@@ -12,11 +12,13 @@ export default (condition: mixed, message?: string) => {
 
   // Condition not passed
 
-  // In production we strip the message but still throw
   if (isProduction) {
+    // In production we strip the message but still throw
     throw new Error(prefix);
   }
 
-  // In other environments we throw with the message
-  throw new Error(`${prefix}: ${message || ''}`);
+  if (!isProduction) {
+    // In other environments we throw with the message
+    throw new Error(`${prefix}: ${message || ''}`);
+  }
 };
