@@ -1,5 +1,7 @@
 # Tiny invariant 😎
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/alexreardon/tiny-invariant.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/alexreardon/tiny-invariant.svg?branch=master)](https://travis-ci.org/alexreardon/tiny-invariant) [![npm](https://img.shields.io/npm/v/react-beautiful-dnd.svg)](https://www.npmjs.com/package/react-beautiful-dnd) [![dependencies](https://david-dm.org/alexreardon/tiny-invariant.svg)](https://david-dm.org/alexreardon/tiny-invariant)
 
 A `~100 byte` [`invariant`](https://www.npmjs.com/package/invariant) alternative.
