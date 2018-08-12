@@ -1,12 +1,18 @@
 {
   "name": "tiny-invariant",
   "version": "0.0.3",
-  "keywords": ["invariant", "error"],
+  "keywords": [
+    "invariant",
+    "error"
+  ],
   "description": "A tiny invariant function",
   "main": "dist/tiny-invariant.cjs.js",
   "module": "dist/tiny-invariant.esm.js",
   "sideEffects": false,
-  "files": ["/dist", "/src"],
+  "files": [
+    "/dist",
+    "/src"
+  ],
   "author": "Alex Reardon <alexreardon@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -15,8 +21,7 @@
     "typecheck": "yarn flow",
     "validate": "yarn lint && yarn flow",
     "build:clean": "rimraf dist",
-    "build:flow":
-      "echo \"// @flow\n\nexport * from '../src';\" > dist/tiny-invariant.cjs.js.flow",
+    "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/tiny-invariant.cjs.js.flow",
     "build:dist": "yarn rollup --config rollup.config.js",
     "build": "yarn build:clean && yarn build:dist && yarn build:flow",
     "prepublishOnly": "yarn build"
@@ -31,7 +36,8 @@
     "jest": "^22.4.3",
     "prettier": "^1.12.1",
     "rimraf": "^2.6.2",
-    "rollup": "^0.58.0",
-    "rollup-plugin-babel": "^3.0.3"
+    "rollup": "^0.64.1",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-replace": "^2.0.0"
   }
 }
