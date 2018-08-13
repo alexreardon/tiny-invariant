@@ -46,15 +46,15 @@ We recommend using [`babel-plugin-dev-expression`](https://www.npmjs.com/package
 What it does it turn your code that looks like this:
 
 ```js
-invariant(condition, message);
+invariant(condition, 'My cool message that takes up a lot of kbs');
 ```
 
-into this
+Into this
 
 ```js
 if (!condition) {
   if ('production' !== process.env.NODE_ENV) {
-    invariant(false, argument, argument);
+    invariant(false, 'My cool message that takes up a lot of kbs');
   } else {
     invariant(false);
   }
@@ -71,6 +71,7 @@ if (!condition) {
 }
 ```
 
+> For `rollup` use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
 > [webpack instructions](https://webpack.js.org/guides/production/#specify-the-mode)
 
 ## Builds
