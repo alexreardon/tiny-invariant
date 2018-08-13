@@ -1,4 +1,4 @@
-# Tiny invariant 😎
+# Tiny invariant 🔬💥
 
 [![Build Status](https://travis-ci.org/alexreardon/tiny-invariant.svg?branch=master)](https://travis-ci.org/alexreardon/tiny-invariant)
 [![npm](https://img.shields.io/npm/v/tiny-invariant.svg)](https://www.npmjs.com/package/tiny-invariant) [![dependencies](https://david-dm.org/alexreardon/tiny-invariant.svg)](https://david-dm.org/alexreardon/tiny-invariant)
@@ -7,11 +7,9 @@
 
 A tiny [`invariant`](https://www.npmjs.com/package/invariant) alternative.
 
-* The second argument for `invariant` is a `message`. `invariant` supports passing in messages in a sprintf style. It has internal logic to execute the sprintf substitutions. We have dropped all of this logic. We simply simply allow you to pass a string. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. You can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
-* We support a es module build for deduplication
-* Full [flowtype](https://flowtype.org) support
+## What is `invariant`?
 
-## Usage
+An `invariant` function tasks a value, and if the value is [falsy](https://github.com/getify/You-Dont-Know-JS/blob/bdbe570600d4e1107d0b131787903ca1c9ec8140/up%20%26%20going/ch2.md#truthy--falsy) then the `invariant` function will throw. If the value is [truthy](https://github.com/getify/You-Dont-Know-JS/blob/bdbe570600d4e1107d0b131787903ca1c9ec8140/up%20%26%20going/ch2.md#truthy--falsy), then the function will not throw.
 
 ```js
 import invariant from 'tiny-invariant';
@@ -22,10 +20,14 @@ invariant(falsyValue, 'This will throw!');
 // Error('Invariant violation: This will throw!');
 ```
 
+## Why `tiny-invariant`?
+
+The [`library: invariant`](https://www.npmjs.com/package/invariant) supports passing in arguments to the `invariant` function in a sprintf style `(condition, format, a, b, c, d, e, f)`. It has internal logic to execute the sprintf substitutions. We have dropped all of the sprintf logic. We simply allow you to pass a single string message. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. You can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
+
 ## API: `(value: mixed, message?: string) => void`
 
-* `value` is required and can be anything
-* `message` is an optional string
+- `value` is required and can be anything
+- `message` is an optional string
 
 ## Installation
 
@@ -73,10 +75,11 @@ if (!condition) {
 
 ## Builds
 
-* We have a `es` (EcmaScript module) build (because you _know_ you want to deduplicate this super heavy library)
-* We have a `cjs` (CommonJS) build
-* We expect `process.env.NODE_ENV` to be available at module compilation. We cache this value
-* We have a `umd` (Universal module definition) build in case you needed it
+- We have a `es` (EcmaScript module) build (because you _know_ you want to deduplicate this super heavy library)
+- We have a `cjs` (CommonJS) build
+- We have a `umd` (Universal module definition) build in case you needed it
+
+We expect `process.env.NODE_ENV` to be available at module compilation. We cache this value
 
 ## That's it!
 
