@@ -72,7 +72,8 @@ if (!condition) {
 ```
 
 > For `rollup` use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
-> [webpack instructions](https://webpack.js.org/guides/production/#specify-the-mode)
+>
+> [`Webpack` instructions](https://webpack.js.org/guides/production/#specify-the-mode)
 
 ## Builds
 
