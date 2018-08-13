@@ -22,7 +22,7 @@ invariant(falsyValue, 'This will throw!');
 
 ## Why `tiny-invariant`?
 
-The [`library: invariant`](https://www.npmjs.com/package/invariant) supports passing in arguments to the `invariant` function in a sprintf style `(condition, format, a, b, c, d, e, f)`. It has internal logic to execute the sprintf substitutions. We have dropped all of the sprintf logic. We simply allow you to pass a single string message. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. You can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
+The [`library: invariant`](https://www.npmjs.com/package/invariant) supports passing in arguments to the `invariant` function in a sprintf style `(condition, format, a, b, c, d, e, f)`. It has internal logic to execute the sprintf substitutions. `tiny-invariant` dropped all of the sprintf logic. `tiny-invariant` allows you to pass a single string message. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. You can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
 
 ## API: `(value: mixed, message?: string) => void`
 
