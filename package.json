@@ -1,18 +1,12 @@
 {
   "name": "tiny-invariant",
   "version": "0.0.3",
-  "keywords": [
-    "invariant",
-    "error"
-  ],
+  "keywords": ["invariant", "error"],
   "description": "A tiny invariant function",
   "main": "dist/tiny-invariant.cjs.js",
   "module": "dist/tiny-invariant.esm.js",
   "sideEffects": false,
-  "files": [
-    "/dist",
-    "/src"
-  ],
+  "files": ["/dist", "/src"],
   "author": "Alex Reardon <alexreardon@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -21,20 +15,21 @@
     "typecheck": "yarn flow",
     "validate": "yarn lint && yarn flow",
     "build:clean": "rimraf dist",
-    "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/tiny-invariant.cjs.js.flow",
+    "build:flow":
+      "echo \"// @flow\n\nexport * from '../src';\" > dist/tiny-invariant.cjs.js.flow",
     "build:dist": "yarn rollup --config rollup.config.js",
     "build": "yarn build:clean && yarn build:dist && yarn build:flow",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.71.0",
-    "jest": "^22.4.3",
-    "prettier": "^1.12.1",
+    "flow-bin": "^0.78.0",
+    "jest": "^23.5.0",
+    "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
