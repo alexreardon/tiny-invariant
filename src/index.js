@@ -9,16 +9,14 @@ export default (condition: mixed, message?: string) => {
   if (condition) {
     return;
   }
-
   // Condition not passed
 
   if (isProduction) {
     // In production we strip the message but still throw
     throw new Error(prefix);
-  }
-
-  if (!isProduction) {
-    // In other environments we throw with the message
+  } else {
+    // When not in production we allow the message to pass through
+    // *This block will be removed in non-production builds*
     throw new Error(`${prefix}: ${message || ''}`);
   }
 };
