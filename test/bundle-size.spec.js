@@ -35,16 +35,22 @@ it(`production mode size should be ${PROD_SIZE}`, async () => {
   expect(code.length).toBe(PROD_SIZE);
 });
 
-const containsMessage = (code: string) => {
+const containsDevCode = (code: string) => {
   return code.includes(`throw new Error(prefix + ': ' + (message || ''))`);
+};
+
+const containsProdCode = (code: string) => {
+  return code.includes(`throw new Error(prefix)`);
 };
 
 it('should include the message in dev builds', async () => {
   const code: string = await getCode({ mode: 'development' });
-  expect(containsMessage(code)).toBe(true);
+  expect(containsDevCode(code)).toBe(true);
+  expect(containsProdCode(code)).toBe(false);
 });
 
 it('not should include the message in prod builds', async () => {
   const code: string = await getCode({ mode: 'production' });
-  expect(containsMessage(code)).toBe(false);
+  expect(containsDevCode(code)).toBe(false);
+  expect(containsProdCode(code)).toBe(true);
 });
