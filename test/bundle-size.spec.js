@@ -3,22 +3,15 @@ import { rollup } from 'rollup';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 
-const DEV_SIZE = 205;
-const PROD_SIZE = 180;
+const DEV_SIZE = 203;
+const PROD_SIZE = 178;
 
 const getCode = async ({ mode }): Promise<string> => {
   const bundle = await rollup({
     input: './src/index.js',
-    output: {
-      format: 'esm',
-    },
     plugins: [
-      babel({
-        babelrc: false,
-        presets: ['flow', ['env', { modules: false, loose: true }]],
-        comments: false,
-      }),
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
+      babel(),
     ],
   });
   const { code } = await bundle.generate({ format: 'esm' });
@@ -36,7 +29,7 @@ it(`production mode size should be ${PROD_SIZE}`, async () => {
 });
 
 const containsDevCode = (code: string) => {
-  return code.includes(`throw new Error(prefix + ': ' + (message || ''))`);
+  return code.includes(`throw new Error(prefix + ": " + (message || ''))`);
 };
 
 const containsProdCode = (code: string) => {

@@ -1,9 +1,12 @@
 {
-  "presets": ["flow", ["env", { "modules": false, "loose": true }]],
-  "comments": false,
-  "env": {
-    "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    }
-  }
+  "presets": [
+    "@babel/flow",
+    [
+      "@babel/env",
+      {
+        "loose": true
+      }
+    ]
+  ],
+  "comments": false
 }
