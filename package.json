@@ -32,13 +32,13 @@
     "@babel/preset-flow": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "flow-bin": "^0.82.0",
+    "flow-bin": "^0.85.0",
     "jest": "^23.6.0",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
-    "rollup": "^0.66.2",
+    "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-uglify": "^6.0.0"
   }
 }
