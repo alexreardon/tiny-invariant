@@ -14,6 +14,10 @@
     "/src"
   ],
   "author": "Alex Reardon <alexreardon@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexreardon/tiny-invariant.git"
+  },
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
