@@ -16,7 +16,7 @@ export default function invariant(condition: mixed, message?: string) {
     throw new Error(prefix);
   } else {
     // When not in production we allow the message to pass through
-    // *This block will be removed in non-production builds*
+    // *This block will be removed in production builds*
     throw new Error(`${prefix}: ${message || ''}`);
   }
 }
