@@ -36,7 +36,7 @@
     "@babel/preset-flow": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "flow-bin": "^0.90.0",
+    "flow-bin": "^0.92.1",
     "jest": "^23.6.0",
     "prettier": "^1.15.0",
     "rimraf": "^2.6.2",
