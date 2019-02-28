@@ -8,6 +8,7 @@
   "description": "A tiny invariant function",
   "main": "dist/tiny-invariant.cjs.js",
   "module": "dist/tiny-invariant.esm.js",
+  "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist",
