@@ -2,20 +2,21 @@
 import { rollup } from 'rollup';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
+import pkg from '../package.json';
 
-const DEV_SIZE = 201;
-const PROD_SIZE = 176;
+const DEV_SIZE = 202;
+const PROD_SIZE = 177;
 
 const getCode = async ({ mode }): Promise<string> => {
   const bundle = await rollup({
-    input: './src/index.js',
+    input: pkg.module,
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
       babel(),
     ],
   });
-  const { code } = await bundle.generate({ format: 'esm' });
-  return code;
+  const result = await bundle.generate({ format: 'esm' });
+  return result.output[0].code;
 };
 
 it(`development mode size should be ${DEV_SIZE}`, async () => {
