@@ -2,14 +2,13 @@
 import { rollup } from 'rollup';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
-import pkg from '../package.json';
 
-const DEV_SIZE = 202;
-const PROD_SIZE = 177;
+const DEV_SIZE = 201;
+const PROD_SIZE = 176;
 
 const getCode = async ({ mode }): Promise<string> => {
   const bundle = await rollup({
-    input: pkg.module,
+    input: './src/index.js',
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
       babel(),
