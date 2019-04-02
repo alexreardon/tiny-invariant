@@ -38,7 +38,7 @@
     "@babel/runtime-corejs2": "^7.4.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.5.0",
-    "flow-bin": "^0.95.1",
+    "flow-bin": "^0.96.0",
     "jest": "^24.5.0",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
