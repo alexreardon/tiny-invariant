@@ -5,7 +5,7 @@ const prefix: string = 'Invariant failed';
 // Throw an error if the condition fails
 // Strip out error messages for production
 // > Not providing an inline default argument for message as the result is smaller
-export default function invariant(condition: mixed, message?: string) {
+const invariant = (condition: mixed, message?: string) => {
   if (condition) {
     return;
   }
@@ -19,4 +19,7 @@ export default function invariant(condition: mixed, message?: string) {
     // *This block will be removed in production builds*
     throw new Error(`${prefix}: ${message || ''}`);
   }
-}
+};
+
+export default invariant;
+export { invariant };
