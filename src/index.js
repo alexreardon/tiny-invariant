@@ -1,5 +1,5 @@
 // @flow
-const isProduction: boolean = process.env.NODE_ENV === 'production';
+export const isProduction: boolean = process.env.NODE_ENV === 'production';
 const prefix: string = 'Invariant failed';
 
 // Throw an error if the condition fails
