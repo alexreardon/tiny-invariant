@@ -1,1 +1,1 @@
-export default function invariant(condition: boolean, message?: string): void
+export default function invariant(condition: any, message?: string): void
