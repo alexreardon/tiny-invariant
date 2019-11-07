@@ -1,6 +1,6 @@
 // @flow
 import { rollup } from 'rollup';
-import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript';
 import replace from 'rollup-plugin-replace';
 
 const DEV_SIZE = 201;
@@ -8,10 +8,10 @@ const PROD_SIZE = 176;
 
 const getCode = async ({ mode }): Promise<string> => {
   const bundle = await rollup({
-    input: './src/index.js',
+    input: './src/tiny-invariant.js',
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
-      babel(),
+      typescript(),
     ],
   });
   const result = await bundle.generate({ format: 'esm' });
