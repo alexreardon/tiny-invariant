@@ -25,7 +25,7 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
-    "lint": "yarn prettier --debug-check src/** test/**",
+    "lint": "yarn prettier --check src/** test/**",
     "typecheck": "yarn flow",
     "validate": "yarn lint && yarn flow",
     "build:clean": "rimraf dist",
@@ -43,7 +43,7 @@
     "babel-jest": "^24.8.0",
     "flow-bin": "^0.102.0",
     "jest": "^24.8.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "rimraf": "^2.6.3",
     "rollup": "^1.16.6",
     "rollup-plugin-babel": "^4.3.3",
