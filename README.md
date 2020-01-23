@@ -35,7 +35,7 @@ The [`library: invariant`](https://www.npmjs.com/package/invariant) supports pas
 # yarn
 yarn add tiny-invariant
 
-# bash
+# npm
 npm add tiny-invariant --save
 ```
 
