@@ -1,8 +1,9 @@
 // @flow
 import { rollup } from 'rollup';
+import { terser } from 'rollup-plugin-terser';
+// ts-jest was giving me some grief so I needed to move to the require syntax here
 const typescript = require('@rollup/plugin-typescript');
 const replace = require('@rollup/plugin-replace');
-import { terser } from 'rollup-plugin-terser';
 
 const DEV_SIZE = 200;
 const PROD_SIZE = 72;
