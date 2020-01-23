@@ -25,7 +25,9 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
-    "lint": "yarn prettier --debug-check src/** test/**",
+    "lint": "yarn prettier:check",
+    "prettier:write": "yarn prettier --debug-check src/** test/**",
+    "prettier:check": "yarn prettier --write src/** test/**",
     "typecheck": "yarn tsc --noEmit src/*.ts test/*.ts",
     "validate": "yarn lint && yarn typecheck",
     "build:clean": "rimraf dist",

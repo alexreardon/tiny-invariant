@@ -2,16 +2,18 @@
 import { rollup } from 'rollup';
 const typescript = require('@rollup/plugin-typescript');
 const replace = require('@rollup/plugin-replace');
+import { terser } from 'rollup-plugin-terser';
 
-const DEV_SIZE = 201;
-const PROD_SIZE = 176;
+const DEV_SIZE = 200;
+const PROD_SIZE = 72;
 
-const getCode = async ({ mode }): Promise<string> => {
+const getCode = async ({ mode, plugins = [] }): Promise<string> => {
   const bundle = await rollup({
     input: 'src/tiny-invariant.ts',
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
-      typescript(),
+      typescript({ removeComments: true }),
+      ...plugins,
     ],
   });
   const result = await bundle.generate({ format: 'esm' });
@@ -24,7 +26,10 @@ it(`development mode size should be ${DEV_SIZE}`, async () => {
 });
 
 it(`production mode size should be ${PROD_SIZE}`, async () => {
-  const code: string = await getCode({ mode: 'production' });
+  const code: string = await getCode({
+    mode: 'production',
+    plugins: [terser()],
+  });
   expect(code.length).toBe(PROD_SIZE);
 });
 
