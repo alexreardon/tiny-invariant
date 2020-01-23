@@ -52,17 +52,13 @@ npm add tiny-invariant --save
 
 ## Dropping your `message` for kb savings!
 
-### Babel
-
-We recommend using [`babel-plugin-dev-expression`](https://www.npmjs.com/package/babel-plugin-dev-expression) to remove the `message` argument from your `invariant` calls in production builds to save kbs!
-
-What it does it turn your code that looks like this:
+Big idea: you will want your compiler to convert this code:
 
 ```js
 invariant(condition, 'My cool message that takes up a lot of kbs');
 ```
 
-Into this
+Into this:
 
 ```js
 if (!condition) {
@@ -74,9 +70,10 @@ if (!condition) {
 }
 ```
 
-Your bundler can then drop the code in the `"production" !== process.env.NODE_ENV` block for your production builds
+- **Babel**: recommend [`babel-plugin-dev-expression`](https://www.npmjs.com/package/babel-plugin-dev-expression)
+- **TypeScript**: recommend [`tsdx`](https://github.com/jaredpalmer/tsdx#invariant) (or you can run `babel-plugin-dev-expression` after TypeScript compiling)
 
-Final result:
+Your bundler can then drop the code in the `"production" !== process.env.NODE_ENV` block for your production builds to end up with this:
 
 ```js
 if (!condition) {
@@ -84,13 +81,8 @@ if (!condition) {
 }
 ```
 
-> For `rollup` use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
->
-> [`Webpack` instructions](https://webpack.js.org/guides/production/#specify-the-mode)
-
-### Typescript
-
-👋 Looking for a easy way to drop dev expressions for production builds
+- rollup: use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
+- Webpack: [instructions](https://webpack.js.org/guides/production/#specify-the-mode)
 
 ## Builds
 
