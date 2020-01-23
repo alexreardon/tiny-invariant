@@ -1,14 +1,14 @@
 // @flow
 import { rollup } from 'rollup';
-import typescript from 'rollup-plugin-typescript';
-import replace from 'rollup-plugin-replace';
+const typescript = require('@rollup/plugin-typescript');
+const replace = require('@rollup/plugin-replace');
 
 const DEV_SIZE = 201;
 const PROD_SIZE = 176;
 
 const getCode = async ({ mode }): Promise<string> => {
   const bundle = await rollup({
-    input: './src/tiny-invariant.js',
+    input: 'src/tiny-invariant.ts',
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
       typescript(),
