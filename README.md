@@ -46,7 +46,7 @@ invariant(value, 'Expected value to be a person');
 # yarn
 yarn add tiny-invariant
 
-# bash
+# npm
 npm add tiny-invariant --save
 ```
 
