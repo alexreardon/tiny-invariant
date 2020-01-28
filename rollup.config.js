@@ -1,28 +1,27 @@
-import babel from 'rollup-plugin-babel';
-import replace from 'rollup-plugin-replace';
-import { uglify } from 'rollup-plugin-uglify';
-import pkg from './package.json';
+import typescript from '@rollup/plugin-typescript';
+import replace from '@rollup/plugin-replace';
+import { terser } from 'rollup-plugin-terser';
 
-const input = 'src/index.js';
+const input = 'src/tiny-invariant.ts';
 
 export default [
   // ESM build
   {
     input,
     output: {
-      file: pkg.module,
+      file: 'dist/tiny-invariant.esm.js',
       format: 'esm',
     },
-    plugins: [babel()],
+    plugins: [typescript()],
   },
   // CommonJS build
   {
     input,
     output: {
-      file: pkg.main,
+      file: 'dist/tiny-invariant.cjs.js',
       format: 'cjs',
     },
-    plugins: [babel()],
+    plugins: [typescript()],
   },
   // UMD: Production build
   {
@@ -33,9 +32,9 @@ export default [
       name: 'invariant',
     },
     plugins: [
-      // Setting development env before running babel etc
+      // Setting development env before running typescript
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-      babel(),
+      typescript(),
     ],
   },
   {
@@ -46,10 +45,10 @@ export default [
       name: 'invariant',
     },
     plugins: [
-      // Setting development env before running babel etc
+      // Setting development env before running typescript
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      babel(),
-      uglify(),
+      typescript(),
+      terser(),
     ],
   },
 ];

@@ -5,18 +5,21 @@ const prefix: string = 'Invariant failed';
 // Throw an error if the condition fails
 // Strip out error messages for production
 // > Not providing an inline default argument for message as the result is smaller
-export default function invariant(condition: mixed, message?: string) {
+export default function invariant(
+  condition: any,
+  message?: string,
+): asserts condition {
   if (condition) {
     return;
   }
   // Condition not passed
 
+  // In production we strip the message but still throw
   if (isProduction) {
-    // In production we strip the message but still throw
     throw new Error(prefix);
-  } else {
-    // When not in production we allow the message to pass through
-    // *This block will be removed in production builds*
-    throw new Error(`${prefix}: ${message || ''}`);
   }
+
+  // When not in production we allow the message to pass through
+  // *This block will be removed in production builds*
+  throw new Error(`${prefix}: ${message || ''}`);
 }

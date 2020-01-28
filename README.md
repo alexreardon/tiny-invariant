@@ -1,9 +1,10 @@
-# `tiny-invariant` 🔬💥
+# tiny-invariant 🔬💥
 
 [![Build Status](https://travis-ci.org/alexreardon/tiny-invariant.svg?branch=master)](https://travis-ci.org/alexreardon/tiny-invariant)
 [![npm](https://img.shields.io/npm/v/tiny-invariant.svg)](https://www.npmjs.com/package/tiny-invariant) [![dependencies](https://david-dm.org/alexreardon/tiny-invariant.svg)](https://david-dm.org/alexreardon/tiny-invariant)
-[![min](https://img.shields.io/bundlephobia/min/tiny-invariant.svg)](https://www.npmjs.com/package/tiny-invariant)
+![types](https://img.shields.io/badge/types-typescript%20%7C%20flow-blueviolet)
 [![minzip](https://img.shields.io/bundlephobia/minzip/tiny-invariant.svg)](https://www.npmjs.com/package/tiny-invariant)
+[![Downloads per month](https://img.shields.io/npm/dm/tiny-invariant.svg)](https://www.npmjs.com/package/tiny-invariant)
 
 A tiny [`invariant`](https://www.npmjs.com/package/invariant) alternative.
 
@@ -24,7 +25,17 @@ invariant(falsyValue, 'This will throw!');
 
 The [`library: invariant`](https://www.npmjs.com/package/invariant) supports passing in arguments to the `invariant` function in a sprintf style `(condition, format, a, b, c, d, e, f)`. It has internal logic to execute the sprintf substitutions. The sprintf logic is not removed in production builds. `tiny-invariant` has dropped all of the sprintf logic. `tiny-invariant` allows you to pass a single string message. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. If you need a multi part message you can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
 
-## API: `(condition: mixed, message?: string) => void`
+## Type narrowing
+
+`tiny-invariant` is useful for correctly narrowing types for `flow` and `typescript`
+
+```ts
+const value: Person | null = { name: 'Alex' }; // type of value == 'Person | null'
+invariant(value, 'Expected value to be a person');
+// type of value has been narrowed to 'Person'
+```
+
+## API: `(condition: any, message?: string) => void`
 
 - `condition` is required and can be anything
 - `message` is an optional string
@@ -41,15 +52,13 @@ npm add tiny-invariant --save
 
 ## Dropping your `message` for kb savings!
 
-We recommend using [`babel-plugin-dev-expression`](https://www.npmjs.com/package/babel-plugin-dev-expression) to remove the `message` argument from your `invariant` calls in production builds to save kbs!
-
-What it does it turn your code that looks like this:
+Big idea: you will want your compiler to convert this code:
 
 ```js
 invariant(condition, 'My cool message that takes up a lot of kbs');
 ```
 
-Into this
+Into this:
 
 ```js
 if (!condition) {
@@ -61,9 +70,10 @@ if (!condition) {
 }
 ```
 
-Your bundler can then drop the code in the `"production" !== process.env.NODE_ENV` block for your production builds
+- **Babel**: recommend [`babel-plugin-dev-expression`](https://www.npmjs.com/package/babel-plugin-dev-expression)
+- **TypeScript**: recommend [`tsdx`](https://github.com/jaredpalmer/tsdx#invariant) (or you can run `babel-plugin-dev-expression` after TypeScript compiling)
 
-Final result:
+Your bundler can then drop the code in the `"production" !== process.env.NODE_ENV` block for your production builds to end up with this:
 
 ```js
 if (!condition) {
@@ -71,9 +81,8 @@ if (!condition) {
 }
 ```
 
-> For `rollup` use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
->
-> [`Webpack` instructions](https://webpack.js.org/guides/production/#specify-the-mode)
+- rollup: use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) and set `NODE_ENV` to `production` and then `rollup` will treeshake out the unused code
+- Webpack: [instructions](https://webpack.js.org/guides/production/#specify-the-mode)
 
 ## Builds
 
