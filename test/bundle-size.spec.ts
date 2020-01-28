@@ -1,5 +1,5 @@
 // @flow
-import { rollup } from 'rollup';
+import { rollup, Plugin } from 'rollup';
 import { terser } from 'rollup-plugin-terser';
 // ts-jest was giving me some grief so I needed to move to the require syntax here
 const typescript = require('@rollup/plugin-typescript');
@@ -8,12 +8,18 @@ const replace = require('@rollup/plugin-replace');
 const DEV_SIZE = 200;
 const PROD_SIZE = 72;
 
-const getCode = async ({ mode, plugins = [] }): Promise<string> => {
+const getCode = async ({
+  mode,
+  plugins = [],
+}: {
+  mode: string;
+  plugins?: Plugin[];
+}): Promise<string> => {
   const bundle = await rollup({
     input: 'src/tiny-invariant.ts',
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
-      typescript({ removeComments: true }),
+      typescript(),
       ...plugins,
     ],
   });

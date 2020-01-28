@@ -1,6 +1,5 @@
-import invariant from "../src/tiny-invariant";
-import { expectType, TypeOf, TypeEqual } from "ts-expect";
-
+import invariant from '../src/tiny-invariant';
+import { expectType } from 'ts-expect';
 
 it('should correctly narrow a type (boolean)', () => {
   const value: boolean = true;
@@ -13,7 +12,7 @@ it('should correctly narrow a type (custom type)', () => {
   type Person = { name: string };
 
   function tryGetPerson(name: string): Nullable<Person> {
-    return {name}
+    return { name };
   }
 
   const alex: Nullable<Person> = tryGetPerson('Alex');
@@ -21,5 +20,3 @@ it('should correctly narrow a type (custom type)', () => {
   invariant(alex);
   expectType<Person>(alex);
 });
-
-
