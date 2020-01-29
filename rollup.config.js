@@ -31,11 +31,7 @@ export default [
       format: 'umd',
       name: 'invariant',
     },
-    plugins: [
-      // Setting development env before running typescript
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-      typescript(),
-    ],
+    plugins: [typescript()],
   },
   {
     input,
@@ -45,9 +41,8 @@ export default [
       name: 'invariant',
     },
     plugins: [
-      // Setting development env before running typescript
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       typescript(),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       terser(),
     ],
   },
