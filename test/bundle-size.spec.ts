@@ -5,39 +5,43 @@ import { terser } from 'rollup-plugin-terser';
 const typescript = require('@rollup/plugin-typescript');
 const replace = require('@rollup/plugin-replace');
 
-const DEV_SIZE = 200;
-const PROD_SIZE = 72;
+const DEV_SIZE = 265;
+const PROD_SIZE = 129;
 
 const getCode = async ({
   mode,
-  plugins = [],
 }: {
-  mode: string;
-  plugins?: Plugin[];
+  mode: 'development' | 'production';
 }): Promise<string> => {
   const bundle = await rollup({
     input: 'src/tiny-invariant.ts',
+    output: {
+      format: 'esm',
+    },
     plugins: [
-      replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
       typescript(),
-      ...plugins,
-    ],
+      replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
+      mode === 'production' ? terser() : null,
+    ].filter(Boolean),
   });
   const result = await bundle.generate({ format: 'esm' });
   return result.output[0].code;
 };
 
-it(`development mode size should be ${DEV_SIZE}`, async () => {
-  const code: string = await getCode({ mode: 'development' });
-  expect(code.length).toBe(DEV_SIZE);
+let dev: string;
+let prod: string;
+
+beforeAll(async () => {
+  dev = await getCode({ mode: 'development' });
+  prod = await getCode({ mode: 'production' });
 });
 
-it(`production mode size should be ${PROD_SIZE}`, async () => {
-  const code: string = await getCode({
-    mode: 'production',
-    plugins: [terser()],
-  });
-  expect(code.length).toBe(PROD_SIZE);
+it(`development mode size should be ${DEV_SIZE}kb`, async () => {
+  expect(dev.length).toBe(DEV_SIZE);
+});
+
+it(`production mode size should be ${PROD_SIZE}kb`, async () => {
+  expect(prod.length).toBe(PROD_SIZE);
 });
 
 const containsDevCode = (code: string) => {
@@ -45,17 +49,16 @@ const containsDevCode = (code: string) => {
 };
 
 const containsProdCode = (code: string) => {
-  return code.includes(`throw new Error(prefix)`);
+  // prefix variable is inlined by terser
+  return code.includes(`throw new Error("Invariant failed")`);
 };
 
 it('should include the message in dev builds', async () => {
-  const code: string = await getCode({ mode: 'development' });
-  expect(containsDevCode(code)).toBe(true);
-  expect(containsProdCode(code)).toBe(false);
+  expect(containsDevCode(dev)).toBe(true);
+  expect(containsProdCode(dev)).toBe(false);
 });
 
 it('not should include the message in prod builds', async () => {
-  const code: string = await getCode({ mode: 'production' });
-  expect(containsDevCode(code)).toBe(false);
-  expect(containsProdCode(code)).toBe(true);
+  expect(containsDevCode(prod)).toBe(false);
+  expect(containsProdCode(prod)).toBe(true);
 });
