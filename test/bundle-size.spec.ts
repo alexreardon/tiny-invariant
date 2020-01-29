@@ -28,37 +28,37 @@ const getCode = async ({
   return result.output[0].code;
 };
 
-let dev: string;
-let prod: string;
+let dev: string = '';
+let prod: string = '';
 
 beforeAll(async () => {
   dev = await getCode({ mode: 'development' });
   prod = await getCode({ mode: 'production' });
 });
 
-it(`development mode size should be ${DEV_SIZE}kb`, async () => {
+it(`development mode size should be ${DEV_SIZE}kb`, () => {
   expect(dev.length).toBe(DEV_SIZE);
 });
 
-it(`production mode size should be ${PROD_SIZE}kb`, async () => {
+it(`production mode size should be ${PROD_SIZE}kb`, () => {
   expect(prod.length).toBe(PROD_SIZE);
 });
 
-const containsDevCode = (code: string) => {
+const containsDevCode = (code: string): boolean => {
   return code.includes(`throw new Error(prefix + ": " + (message || ''))`);
 };
 
-const containsProdCode = (code: string) => {
+const containsProdCode = (code: string): boolean => {
   // prefix variable is inlined by terser
   return code.includes(`throw new Error("Invariant failed")`);
 };
 
-it('should include the message in dev builds', async () => {
+it('should include the message in dev builds', () => {
   expect(containsDevCode(dev)).toBe(true);
   expect(containsProdCode(dev)).toBe(false);
 });
 
-it('not should include the message in prod builds', async () => {
+it('not should include the message in prod builds', () => {
   expect(containsDevCode(prod)).toBe(false);
   expect(containsProdCode(prod)).toBe(true);
 });
