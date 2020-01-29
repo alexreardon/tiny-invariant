@@ -34,7 +34,7 @@ let prod: string = '';
 beforeAll(async () => {
   dev = await getCode({ mode: 'development' });
   prod = await getCode({ mode: 'production' });
-});
+}, 30000);
 
 it(`development mode size should be ${DEV_SIZE}kb`, () => {
   expect(dev.length).toBe(DEV_SIZE);
