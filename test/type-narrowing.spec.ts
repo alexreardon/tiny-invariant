@@ -1,7 +1,7 @@
-import invariant from '../src/tiny-invariant';
 import { expectType } from 'ts-expect';
+import invariant from '../src/tiny-invariant';
 
-it('should correctly narrow a type (boolean)', () => {
+it('should correctly narrow a type (boolean)', done => {
   try {
     const value: boolean = false;
 
@@ -9,7 +9,10 @@ it('should correctly narrow a type (boolean)', () => {
     expectType<true>(value);
     // this will never be hit as value is false, but it is showing
     // that in order to get to this point the type would need to be true
-  } catch {}
+  } catch {
+    // Ensures that invariant has thrown and goes through the catch block.
+    done();
+  }
 });
 
 it('should correctly narrow a type (custom type)', () => {
