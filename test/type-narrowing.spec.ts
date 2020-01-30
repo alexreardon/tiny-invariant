@@ -2,9 +2,14 @@ import invariant from '../src/tiny-invariant';
 import { expectType } from 'ts-expect';
 
 it('should correctly narrow a type (boolean)', () => {
-  const value: boolean = true;
-  invariant(value, 'Value is false');
-  expectType<true>(value);
+  try {
+    const value: boolean = false;
+
+    invariant(value, 'Value is false');
+    expectType<true>(value);
+    // this will never be hit as value is false, but it is showing
+    // that in order to get to this point the type would need to be true
+  } catch {}
 });
 
 it('should correctly narrow a type (custom type)', () => {
