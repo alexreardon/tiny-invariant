@@ -6,9 +6,9 @@ it('should correctly narrow a type (boolean)', () => {
     const value: boolean = false;
 
     invariant(value, 'Value is false');
-    expectType<true>(value);
     // this will never be hit as value is false, but it is showing
     // that in order to get to this point the type would need to be true
+    expectType<true>(value);
   } catch {}
 });
 
