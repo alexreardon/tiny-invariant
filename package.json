@@ -38,7 +38,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^2.3.0",
+    "@rollup/plugin-replace": "^2.3.2",
     "@rollup/plugin-typescript": "^3.0.0",
     "@types/jest": "^25.1.0",
     "jest": "^25.1.0",
