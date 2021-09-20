@@ -6,7 +6,7 @@ const prefix: string = 'Invariant failed';
 // > Not providing an inline default argument for message as the result is smaller
 export default function invariant(
   condition: any,
-  message?: string,
+  message?: string | (() => string),
 ): asserts condition {
   if (condition) {
     return;
@@ -20,5 +20,7 @@ export default function invariant(
 
   // When not in production we allow the message to pass through
   // *This block will be removed in production builds*
-  throw new Error(`${prefix}: ${message || ''}`);
+  const text: string =
+    typeof message === 'function' ? message() : message || '';
+  throw new Error(`${prefix}: ${text}`);
 }
