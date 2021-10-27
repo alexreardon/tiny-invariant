@@ -25,11 +25,10 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn jest",
-    "lint": "yarn prettier:check",
     "prettier:write": "yarn prettier --debug-check src/** test/**",
     "prettier:check": "yarn prettier --write src/** test/**",
-    "typecheck": "yarn tsc --noEmit src/*.ts test/*.ts",
-    "validate": "yarn lint && yarn typecheck",
+    "typescript:check": "yarn tsc --noEmit src/*.ts test/*.ts",
+    "validate": "yarn prettier:check && yarn typescript:check",
     "build:clean": "rimraf dist",
     "build:flow": "cp src/tiny-invariant.js.flow dist/tiny-invariant.cjs.js.flow",
     "build:typescript": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist",
