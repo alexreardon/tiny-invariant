@@ -1,7 +1,0 @@
-language: node_js
-cache: yarn
-node_js:
-  - '10.15.3'
-script:
-  - yarn run validate
-  - yarn run test
