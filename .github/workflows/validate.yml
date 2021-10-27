@@ -1,4 +1,4 @@
-name: Typescript, eslint, prettier checks
+name: Typescript + prettier checks
 
 on:
   push:
@@ -30,5 +30,5 @@ jobs:
         run: yarn install
 
       # Validates project
-      - name: Typescript, eslint, prettier checks
+      - name: Typescript + prettier checks
         run: yarn validate
