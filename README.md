@@ -35,10 +35,16 @@ invariant(value, 'Expected value to be a person');
 // type of value has been narrowed to 'Person'
 ```
 
-## API: `(condition: any, message?: string) => void`
+## API: `(condition: any, message?: string | (() => string)) => void`
 
 - `condition` is required and can be anything
-- `message` is an optional string
+- `message` optional `string` or a function that returns a `string` (`() => string`)
+
+Your `message` can be a function that returns a `string` (`() => string`) for the cases where you want to lazily create your error message, such as when they are expensive to make.
+
+```ts
+invariant(value, () => getExpensiveMessage());
+```
 
 ## Installation
 

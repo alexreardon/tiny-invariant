@@ -4,7 +4,10 @@
 
 const prefix: string = 'Invariant failed';
 
-export default function invariant(condition: mixed, message?: string) {
+export default function invariant(
+  condition: mixed,
+  message?: string | (() => string),
+) {
   if (condition) {
     return;
   }
