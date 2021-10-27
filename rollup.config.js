@@ -20,8 +20,9 @@ export default [
     output: {
       file: 'dist/tiny-invariant.cjs.js',
       format: 'cjs',
+      exports: 'default',
     },
-    plugins: [typescript({ module: 'CommonJS' })],
+    plugins: [typescript({ module: 'ESNext' })],
   },
   // UMD: Production build
   {
@@ -31,7 +32,7 @@ export default [
       format: 'umd',
       name: 'invariant',
     },
-    plugins: [typescript({ module: 'CommonJS' })],
+    plugins: [typescript({ module: 'ESNext' })],
   },
   {
     input,
@@ -41,7 +42,7 @@ export default [
       name: 'invariant',
     },
     plugins: [
-      typescript({ module: 'CommonJS' }),
+      typescript({ module: 'ESNext' }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('production'), preventAssignment: true }),
       terser(),
     ],
