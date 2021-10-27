@@ -5,8 +5,8 @@ import { terser } from 'rollup-plugin-terser';
 const typescript = require('@rollup/plugin-typescript');
 const replace = require('@rollup/plugin-replace');
 
-const DEV_SIZE = 265;
-const PROD_SIZE = 129;
+const expectedDevSize = 207;
+const expectedProdSize = 80;
 
 const getCode = async ({
   mode,
@@ -19,8 +19,8 @@ const getCode = async ({
       format: 'esm',
     },
     plugins: [
-      typescript(),
-      replace({ 'process.env.NODE_ENV': JSON.stringify(mode) }),
+      typescript({module: 'ESNext'}),
+      replace({ 'process.env.NODE_ENV': JSON.stringify(mode), preventAssignment: true }),
       mode === 'production' ? terser() : null,
     ].filter(Boolean),
   });
@@ -36,12 +36,12 @@ beforeAll(async () => {
   prod = await getCode({ mode: 'production' });
 }, 30000);
 
-it(`development mode size should be ${DEV_SIZE}kb`, () => {
-  expect(dev.length).toBe(DEV_SIZE);
+it(`development mode size should be ${expectedDevSize}kb`, () => {
+  expect(dev.length).toBe(expectedDevSize);
 });
 
-it(`production mode size should be ${PROD_SIZE}kb`, () => {
-  expect(prod.length).toBe(PROD_SIZE);
+it(`production mode size should be ${expectedProdSize}kb`, () => {
+  expect(prod.length).toBe(expectedProdSize);
 });
 
 const containsDevCode = (code: string): boolean => {

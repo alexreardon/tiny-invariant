@@ -1,4 +1,4 @@
-import { expectType } from 'ts-expect';
+import { expectTypeOf } from 'expect-type';
 import invariant from '../src/tiny-invariant';
 
 it('should correctly narrow a type (boolean)', done => {
@@ -8,7 +8,7 @@ it('should correctly narrow a type (boolean)', done => {
     invariant(value, 'Value is false');
     // this will never be hit as value is false, but it is showing
     // that in order to get to this point the type would need to be true
-    expectType<never>(value);
+    expectTypeOf<never>(value);
   } catch {
     // Ensures that invariant has thrown and goes through the catch block.
     done();
@@ -26,5 +26,5 @@ it('should correctly narrow a type (custom type)', () => {
   const alex: Nullable<Person> = tryGetPerson('Alex');
 
   invariant(alex);
-  expectType<Person>(alex);
+  expectTypeOf<Person>(alex);
 });
