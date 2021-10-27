@@ -1,9 +1,7 @@
 // @flow
-import { rollup, Plugin } from 'rollup';
-import { terser } from 'rollup-plugin-terser';
-// ts-jest was giving me some grief so I needed to move to the require syntax here
-const typescript = require('@rollup/plugin-typescript');
-const replace = require('@rollup/plugin-replace');
+import { rollup } from 'rollup';
+import typescript from '@rollup/plugin-typescript';
+import replace from '@rollup/plugin-replace';
 
 jest.setTimeout(30000);
 
