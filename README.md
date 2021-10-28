@@ -21,7 +21,7 @@ invariant(falsyValue, 'This will throw!');
 // Error('Invariant violation: This will throw!');
 ```
 
-You can also make your messages lazy if they are expensive to create:
+You can also provide a function to generate your message, for when your message is expensive to create
 
 ```js
 import invariant from 'tiny-invariant';
