@@ -552,34 +552,34 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@size-limit/file@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-6.0.3.tgz#8cae76a17e6061416353ea75799b45e8fc565191"
-  integrity sha512-OfDrkJBB7OAWtnedz6jpmL1pjlha1MpgtvYwUSP2442qB96nwMN5Ig78XR3ldPj2cbxq1FVoNnc2vfWMi40vQA==
+"@size-limit/file@6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-6.0.4.tgz#64681f0e0ec93d69b1d99f0a40bbbcdd2fb7def6"
+  integrity sha512-SoGUUNEHsZJTDlw6znuMbR0z6apr/NmeEXSFT6iB6gUPyOHIdFtFJpvWeS1vijC7OFQhWHskedB6nBJ6L+bd+A==
   dependencies:
     semver "7.3.5"
 
-"@size-limit/preset-small-lib@^6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-small-lib/-/preset-small-lib-6.0.3.tgz#30c37000c61ac9bbb8e848a7ff43221f19d60942"
-  integrity sha512-HvHgrLp5sNEWfw3js6oBWty2dQyDf2SDhehDGJuQRL+8IVRFQcx0XLkqiHAdMrCNvDmfRPfvLkcp5wcxpjgbrw==
+"@size-limit/preset-small-lib@^6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-small-lib/-/preset-small-lib-6.0.4.tgz#707863bee82c7412b2e7201c301db1de793e7158"
+  integrity sha512-eMay+Hv/ufJyCUX/pFXa30AiYsjrT/Tjw1G7h7CCNKulbEjAY2rAiEsCQkm+rCNnYoPUgOsWhMYy908J23Qb6Q==
   dependencies:
-    "@size-limit/file" "6.0.3"
-    "@size-limit/webpack" "6.0.3"
+    "@size-limit/file" "6.0.4"
+    "@size-limit/webpack" "6.0.4"
 
-"@size-limit/webpack@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-6.0.3.tgz#43002b1ac8b72ea0ea91f80968a9306ac5bb2aa4"
-  integrity sha512-4LI3SpkL0YbOIJsE7+t0LdPgqMeRDDwk1LELHHyk1b67tIjQ9wfnehI0BPT4LYiT23vN7Tg1TN0ofjwuRCLdbA==
+"@size-limit/webpack@6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-6.0.4.tgz#2e23b6a3efb11cb081fb65394d05f218c7051270"
+  integrity sha512-51rvLztZcvT+Qc5g8FusyC8ZDcpVg7+O1a4hfO2K2XMZV8CFguRN//xMwQXv5q6I1ImUQeyURyiCXIQD24qJYQ==
   dependencies:
-    "@statoscope/webpack-plugin" "^5.13.1"
-    css-loader "^6.4.0"
+    "@statoscope/webpack-plugin" "^5.17.0"
+    css-loader "^6.5.0"
     css-minimizer-webpack-plugin "^3.0.2"
     escape-string-regexp "^4.0.0"
     mkdirp "^1.0.4"
-    nanoid "^3.1.28"
-    style-loader "^3.3.0"
-    webpack "^5.56.0"
+    nanoid "^3.1.30"
+    style-loader "^3.3.1"
+    webpack "^5.61.0"
 
 "@statoscope/extensions@5.14.1":
   version "5.14.1"
@@ -651,10 +651,10 @@
   dependencies:
     "@statoscope/stats" "5.14.1"
 
-"@statoscope/webpack-model@5.14.1":
-  version "5.14.1"
-  resolved "https://registry.yarnpkg.com/@statoscope/webpack-model/-/webpack-model-5.14.1.tgz#999f4be029b61ced6a9a1b5b74e50136e13a2ab6"
-  integrity sha512-qSZmtRAk2TSCDaG+ZiMBBfe850/McoNg0Ka2JKsAeSZQ7OOSNN24U/jhmcXtHaoUzxlEGsrEyx8Xz4BMdibjgw==
+"@statoscope/webpack-model@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/@statoscope/webpack-model/-/webpack-model-5.17.0.tgz#2c0084ed1af447b46599b09928c21279c888b419"
+  integrity sha512-t6V9yNKgNzdKVakdRdlplSsMfmIp4Dn4j23FhoetzEh/fmLSkd7X8REFBtEYQeR8RFe+QC19gOmbb2uoGwZ+nA==
   dependencies:
     "@statoscope/extensions" "5.14.1"
     "@statoscope/helpers" "5.14.1"
@@ -669,10 +669,10 @@
     ajv "^8.6.3"
     md5 "^2.3.0"
 
-"@statoscope/webpack-plugin@^5.13.1":
-  version "5.16.0"
-  resolved "https://registry.yarnpkg.com/@statoscope/webpack-plugin/-/webpack-plugin-5.16.0.tgz#b2925bea8045b86b48df324d498700e1c4de8c8f"
-  integrity sha512-5qqSWpym1hupRJZnIrzbz82UKhsGN8kM2AvRBf1gQqs3ooxKtJtZGw+tHiCKQYq/IfdFkVEfC57R9y6cTwciFw==
+"@statoscope/webpack-plugin@^5.17.0":
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/@statoscope/webpack-plugin/-/webpack-plugin-5.17.0.tgz#df6eabb15b1134c309e9de4e42c45a98224604f7"
+  integrity sha512-oFjHK/7rOgyp5Y9izeMjRDWp1/Ku3gXqPpVYOxLu8N5IqRwwHXKNmxMP4cgqBw8qLOrwN0VVYLXrfx+gFtbk2A==
   dependencies:
     "@discoveryjs/json-ext" "^0.5.5"
     "@statoscope/report-writer" "5.14.1"
@@ -680,38 +680,38 @@
     "@statoscope/stats-extension-compressed" "5.14.1"
     "@statoscope/stats-extension-custom-reports" "5.14.1"
     "@statoscope/types" "5.14.1"
-    "@statoscope/webpack-model" "5.14.1"
-    "@statoscope/webpack-stats-extension-compressed" "5.14.1"
-    "@statoscope/webpack-stats-extension-package-info" "5.14.1"
-    "@statoscope/webpack-ui" "5.16.0"
+    "@statoscope/webpack-model" "5.17.0"
+    "@statoscope/webpack-stats-extension-compressed" "5.17.0"
+    "@statoscope/webpack-stats-extension-package-info" "5.17.0"
+    "@statoscope/webpack-ui" "5.17.0"
     "@types/node" "^12.20.15"
     "@types/webpack" "^5.0.0"
     open "^8.2.1"
 
-"@statoscope/webpack-stats-extension-compressed@5.14.1":
-  version "5.14.1"
-  resolved "https://registry.yarnpkg.com/@statoscope/webpack-stats-extension-compressed/-/webpack-stats-extension-compressed-5.14.1.tgz#bc8ea1167e61160b7fe00a4f36d395e52cd00582"
-  integrity sha512-fg0m30TqM1vQx0aEkyILasvmtYxTmcR0mEWsK3bR7sp+lmLP+GvbGhWoQ51GTmiVofpO83yjvAlc1YhvLAEVWA==
+"@statoscope/webpack-stats-extension-compressed@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/@statoscope/webpack-stats-extension-compressed/-/webpack-stats-extension-compressed-5.17.0.tgz#bce1f4dc2f9f22c4d740b185a9022d796a154500"
+  integrity sha512-SEZ2Pmi5hE7TPtjKgE+9VmryZ/YbzRMf0vqswrJsWmSJlXW1GBOuqVk67exeWkk2/+/vkO+f2afQgjEs6Jy+/A==
   dependencies:
     "@statoscope/stats" "5.14.1"
     "@statoscope/stats-extension-compressed" "5.14.1"
-    "@statoscope/webpack-model" "5.14.1"
+    "@statoscope/webpack-model" "5.17.0"
     "@types/webpack" "^5.0.0"
 
-"@statoscope/webpack-stats-extension-package-info@5.14.1":
-  version "5.14.1"
-  resolved "https://registry.yarnpkg.com/@statoscope/webpack-stats-extension-package-info/-/webpack-stats-extension-package-info-5.14.1.tgz#527616db566f913a1bee46482e0636cbad389e5a"
-  integrity sha512-J5turi/cQSxttPgusMt1ppefBdk4a7hocpVmdO7myv+v5S996RVFrmKnyZeOavp15PivA4LytJgO8Oq6/WORMA==
+"@statoscope/webpack-stats-extension-package-info@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/@statoscope/webpack-stats-extension-package-info/-/webpack-stats-extension-package-info-5.17.0.tgz#177906ecce8bf377d7d865e85f55217b924aed06"
+  integrity sha512-aBoQBviAYnTmso7k6WSmheSfBOQsagghIWG/9UOfueVUgF9yad/tZgrnPCJvmb55/LnrRvYF9nA8knHM9P1XYg==
   dependencies:
     "@statoscope/stats" "5.14.1"
     "@statoscope/stats-extension-package-info" "5.14.1"
-    "@statoscope/webpack-model" "5.14.1"
+    "@statoscope/webpack-model" "5.17.0"
     "@types/webpack" "^5.0.0"
 
-"@statoscope/webpack-ui@5.16.0":
-  version "5.16.0"
-  resolved "https://registry.yarnpkg.com/@statoscope/webpack-ui/-/webpack-ui-5.16.0.tgz#778b1a19d948be6e15c5091180400d7737135157"
-  integrity sha512-Youu3HJlrcvuWPI/kWTEEllbwxfGUkY78IjznxDhY6N5cOqujE43ttaPH3oGTqC4opm6fCDXdBaEiJlbdXQeVQ==
+"@statoscope/webpack-ui@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/@statoscope/webpack-ui/-/webpack-ui-5.17.0.tgz#12b9c1b95b80277922f1c313fd198b3bde63df97"
+  integrity sha512-R7g/r7x7VnrlMPcb99HYdQAnb5qpi1GLT2XMnnMalJfyPC/dLGoOqSsjCB9V3C/leuUKyhlKbaRI4FcWyrHbzw==
   dependencies:
     "@statoscope/types" "5.14.1"
     highcharts "^9.2.2"
@@ -1477,7 +1477,7 @@ css-declaration-sorter@^6.0.3:
   dependencies:
     timsort "^0.3.0"
 
-css-loader@^6.4.0:
+css-loader@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-6.5.0.tgz#9d1cf7766a9a8f0b3c6e1638309b964dbdab46d3"
   integrity sha512-VmuSdQa3K+wJsl39i7X3qGBM5+ZHmtTnv65fqMGI+fzmHoYmszTVvTqC1XN8JwWDViCB1a8wgNim5SV4fb37xg==
@@ -2906,15 +2906,15 @@ nanocolors@^0.1.12:
   resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.1.12.tgz#8577482c58cbd7b5bb1681db4cf48f11a87fd5f6"
   integrity sha512-2nMHqg1x5PU+unxX7PGY7AuYxl2qDx7PSrTRjizr8sxdd3l/3hBuWWaki62qmtYm2U5i4Z5E7GbjlyDFhs9/EQ==
 
-nanoid@^3.1.28, nanoid@^3.1.30:
+nanoid@^3.1.30:
   version "3.1.30"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
   integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
 
-nanospinner@^0.3.0:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/nanospinner/-/nanospinner-0.3.2.tgz#501ac31b48bf47be8e25fc07543b5fe620a742e8"
-  integrity sha512-ToZuxmiRuuNe3McB7CVzP7PCOhzWAy4qx6ndb5QWxJFp6INdg3n0mVm8f7HR6Fz8raRg3/vzglIZYrOSna8vkg==
+nanospinner@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/nanospinner/-/nanospinner-0.4.0.tgz#f544f71fb990423528b8f6dd6c26134cf9f21659"
+  integrity sha512-FhxiB9PcEztMw6XfQDSLJBMlmN4n7B2hl/oiK4Hy9479r1+df0i2099DgcEx+m6yBfBJVUuKpILvP8fM3rK3Sw==
   dependencies:
     picocolors "^1.0.0"
 
@@ -3062,11 +3062,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-picocolors@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
-  integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
 
 picocolors@^1.0.0:
   version "1.0.0"
@@ -3562,18 +3557,18 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-size-limit@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-6.0.3.tgz#980e91993a409cb80dd4776fe3e2867afa4d55d0"
-  integrity sha512-bvZuNG1dPJ8GTkFq3lXkW8H1+ybVV3D7GecowAGlfbNO2T1Mcvy8kCoCpwVOWnq1wV+TraRUtExnQzIyyV94NQ==
+size-limit@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-6.0.4.tgz#f3345206d8c25485d0d31ea41622761a3a1aad93"
+  integrity sha512-zo/9FrXzetvZGFJnd1LC4mR9GvirElALlerMY3EOwEGdW7Lwgl2WT0hTRC2559ZR2PGfRpnXEgAFkayGAJOebg==
   dependencies:
     bytes-iec "^3.1.1"
     chokidar "^3.5.2"
     ci-job-number "^1.2.2"
     globby "^11.0.4"
     lilconfig "^2.0.3"
-    nanospinner "^0.3.0"
-    picocolors "^0.2.1"
+    nanospinner "^0.4.0"
+    picocolors "^1.0.0"
 
 slash@^3.0.0:
   version "3.0.0"
@@ -3664,7 +3659,7 @@ strip-final-newline@^2.0.0:
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-2.0.0.tgz#89b852fb2fcbe936f6f4b3187afb0a12c1ab58ad"
   integrity sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==
 
-style-loader@^3.3.0:
+style-loader@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.3.1.tgz#057dfa6b3d4d7c7064462830f9113ed417d38575"
   integrity sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==
@@ -3938,10 +3933,40 @@ webpack-sources@^3.2.0:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.1.tgz#251a7d9720d75ada1469ca07dbb62f3641a05b6d"
   integrity sha512-t6BMVLQ0AkjBOoRTZgqrWm7xbXMBzD+XDq2EZ96+vMfn3qKgsvdXZhbPZ4ElUOpdv4u+iiGe+w3+J75iy/bYGA==
 
-webpack@^5, webpack@^5.56.0:
+webpack@^5:
   version "5.60.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.60.0.tgz#9c26f38a57c9688b0a8c5c885e05197344eae67d"
   integrity sha512-OL5GDYi2dKxnwJPSOg2tODgzDxAffN0osgWkZaBo/l3ikCxDFP+tuJT3uF7GyBE3SDBpKML/+a8EobyWAQO3DQ==
+  dependencies:
+    "@types/eslint-scope" "^3.7.0"
+    "@types/estree" "^0.0.50"
+    "@webassemblyjs/ast" "1.11.1"
+    "@webassemblyjs/wasm-edit" "1.11.1"
+    "@webassemblyjs/wasm-parser" "1.11.1"
+    acorn "^8.4.1"
+    acorn-import-assertions "^1.7.6"
+    browserslist "^4.14.5"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^5.8.3"
+    es-module-lexer "^0.9.0"
+    eslint-scope "5.1.1"
+    events "^3.2.0"
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.2.4"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^4.2.0"
+    mime-types "^2.1.27"
+    neo-async "^2.6.2"
+    schema-utils "^3.1.0"
+    tapable "^2.1.1"
+    terser-webpack-plugin "^5.1.3"
+    watchpack "^2.2.0"
+    webpack-sources "^3.2.0"
+
+webpack@^5.61.0:
+  version "5.61.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.61.0.tgz#fa827f0ee9bdfd141dd73c3e891e955ebd52fe7f"
+  integrity sha512-fPdTuaYZ/GMGFm4WrPi2KRCqS1vDp773kj9S0iI5Uc//5cszsFEDgHNaX4Rj1vobUiU1dFIV3mA9k1eHeluFpw==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
