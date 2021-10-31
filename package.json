@@ -1,6 +1,6 @@
 {
   "name": "tiny-invariant",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0",
   "description": "A tiny invariant function",
   "author": "Alex Reardon <alexreardon@gmail.com>",
   "license": "MIT",
