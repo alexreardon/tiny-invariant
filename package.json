@@ -1,11 +1,22 @@
 {
   "name": "tiny-invariant",
-  "version": "1.1.0",
+  "version": "1.2.0-beta.1",
+  "description": "A tiny invariant function",
+  "author": "Alex Reardon <alexreardon@gmail.com>",
+  "license": "MIT",
   "keywords": [
     "invariant",
-    "error"
+    "error",
+    "assert",
+    "asserts"
   ],
-  "description": "A tiny invariant function",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexreardon/tiny-invariant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexreardon/tiny-invariant/issues"
+  },
   "main": "dist/tiny-invariant.cjs.js",
   "module": "dist/tiny-invariant.esm.js",
   "types": "dist/tiny-invariant.d.ts",
@@ -14,15 +25,6 @@
     "/dist",
     "/src"
   ],
-  "author": "Alex Reardon <alexreardon@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alexreardon/tiny-invariant.git"
-  },
-  "bugs": {
-    "url": "https://github.com/alexreardon/tiny-invariant/issues"
-  },
   "size-limit": [
     {
       "path": "dist/tiny-invariant.min.js",

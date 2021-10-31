@@ -21,6 +21,14 @@ invariant(falsyValue, 'This will throw!');
 // Error('Invariant violation: This will throw!');
 ```
 
+You can also provide a function to generate your message, for when your message is expensive to create
+
+```js
+import invariant from 'tiny-invariant';
+
+invariant(value, () => getExpensiveMessage());
+```
+
 ## Why `tiny-invariant`?
 
 The [`library: invariant`](https://www.npmjs.com/package/invariant) supports passing in arguments to the `invariant` function in a sprintf style `(condition, format, a, b, c, d, e, f)`. It has internal logic to execute the sprintf substitutions. The sprintf logic is not removed in production builds. `tiny-invariant` has dropped all of the sprintf logic. `tiny-invariant` allows you to pass a single string message. With [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) there is really no need for a custom message formatter to be built into the library. If you need a multi part message you can just do this: `invariant(condition, 'Hello, ${name} - how are you today?')`
@@ -35,10 +43,10 @@ invariant(value, 'Expected value to be a person');
 // type of value has been narrowed to 'Person'
 ```
 
-## API: `(condition: any, message?: string) => void`
+## API: `(condition: any, message?: string | (() => string)) => void`
 
 - `condition` is required and can be anything
-- `message` is an optional string
+- `message` optional `string` or a function that returns a `string` (`() => string`)
 
 ## Installation
 
@@ -86,7 +94,7 @@ if (!condition) {
 
 ## Builds
 
-- We have a `es` (EcmaScript module) build (because you _know_ you want to deduplicate this super heavy library)
+- We have a `es` (EcmaScript module) build
 - We have a `cjs` (CommonJS) build
 - We have a `umd` (Universal module definition) build in case you needed it
 
