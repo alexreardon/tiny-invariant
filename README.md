@@ -55,7 +55,7 @@ invariant(value, 'Expected value to be a person');
 yarn add tiny-invariant
 
 # npm
-npm add tiny-invariant --save
+npm install tiny-invariant --save
 ```
 
 ## Dropping your `message` for kb savings!
