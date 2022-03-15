@@ -1,4 +1,3 @@
-const isProduction: boolean = process.env.NODE_ENV === 'production';
 const prefix: string = 'Invariant failed';
 
 /**
@@ -29,11 +28,6 @@ export default function invariant(
     return;
   }
   // Condition not passed
-
-  // In production we strip the message but still throw
-  if (isProduction) {
-    throw new Error(prefix);
-  }
 
   // When not in production we allow the message to pass through
   // *This block will be removed in production builds*
