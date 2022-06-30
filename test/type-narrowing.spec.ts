@@ -1,7 +1,7 @@
 import { expectTypeOf } from 'expect-type';
 import invariant from '../src/tiny-invariant';
 
-it('should correctly narrow a type (boolean)', done => {
+it('should correctly narrow a type (boolean)', (done) => {
   try {
     const value: boolean = false;
 
