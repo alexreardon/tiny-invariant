@@ -5,11 +5,7 @@ import replace from '@rollup/plugin-replace';
 
 jest.setTimeout(30000);
 
-const getCode = async ({
-  mode,
-}: {
-  mode: 'development' | 'production';
-}): Promise<string> => {
+const getCode = async ({ mode }: { mode: 'development' | 'production' }): Promise<string> => {
   const bundle = await rollup({
     input: 'src/tiny-invariant.ts',
     output: {
@@ -17,7 +13,7 @@ const getCode = async ({
     },
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify(mode), preventAssignment: true }),
-      typescript({module: 'ESNext'}),
+      typescript({ module: 'ESNext' }),
     ],
   });
   const result = await bundle.generate({ format: 'esm' });
@@ -25,7 +21,6 @@ const getCode = async ({
 };
 
 const devOnlyString: string = `typeof message === 'function' ? message() : message`;
-
 
 it('should include the message in dev builds', async () => {
   const code = await getCode({ mode: 'development' });

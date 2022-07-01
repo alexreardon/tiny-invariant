@@ -28,20 +28,20 @@
   "size-limit": [
     {
       "path": "dist/tiny-invariant.min.js",
-      "limit": "175B"
+      "limit": "217B"
     },
     {
       "path": "dist/tiny-invariant.js",
-      "limit": "176B"
+      "limit": "267B"
     },
     {
       "path": "dist/tiny-invariant.cjs.js",
-      "limit": "164B"
+      "limit": "171B"
     },
     {
       "path": "dist/tiny-invariant.esm.js",
       "import": "foo",
-      "limit": "49B"
+      "limit": "104B"
     }
   ],
   "scripts": {
@@ -59,20 +59,20 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^3.0.0",
-    "@rollup/plugin-typescript": "^8.3.0",
-    "@size-limit/preset-small-lib": "^6.0.4",
-    "@types/jest": "^27.0.2",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@types/jest": "^28.1.4",
     "@types/rollup": "^0.54.0",
     "expect-type": "^0.13.0",
-    "jest": "^27.3.1",
-    "prettier": "^2.4.1",
+    "jest": "^28.1.2",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.58.3",
+    "rollup": "^2.75.7",
     "rollup-plugin-terser": "^7.0.2",
-    "size-limit": "^6.0.4",
-    "ts-jest": "^27.0.7",
-    "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+    "size-limit": "^7.0.8",
+    "ts-jest": "^28.0.5",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
   }
 }
