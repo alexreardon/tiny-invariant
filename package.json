@@ -28,20 +28,20 @@
   "size-limit": [
     {
       "path": "dist/tiny-invariant.min.js",
-      "limit": "175B"
+      "limit": "217B"
     },
     {
       "path": "dist/tiny-invariant.js",
-      "limit": "176B"
+      "limit": "267B"
     },
     {
       "path": "dist/tiny-invariant.cjs.js",
-      "limit": "164B"
+      "limit": "171B"
     },
     {
       "path": "dist/tiny-invariant.esm.js",
       "import": "foo",
-      "limit": "49B"
+      "limit": "104B"
     }
   ],
   "scripts": {
