@@ -43,7 +43,7 @@ export default [
   {
     input,
     output: {
-      file: 'dist/node16/tiny-invariant.js',
+      file: 'dist/esm/tiny-invariant.js',
       format: 'esm',
     },
     plugins: [typescript({ module: 'ESNext' })],

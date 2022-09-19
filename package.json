@@ -22,7 +22,7 @@
   "types": "dist/tiny-invariant.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/node16/tiny-invariant.js",
+      "import": "./dist/esm/tiny-invariant.js",
       "default": "./dist/tiny-invariant.cjs.js"
     }
   },
@@ -60,10 +60,10 @@
     "build:clean": "rimraf dist",
     "build:flow": "cp src/tiny-invariant.js.flow dist/tiny-invariant.cjs.js.flow",
     "build:typescript": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist",
-    "build:typescript:node16": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist/node16",
-    "build:copy-esm-packagejson": "cp static/package-esm.json dist/node16/package.json",
+    "build:typescript:esm": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist/esm",
+    "build:copy-esm-packagejson": "cp static/package-esm.json dist/esm/package.json",
     "build:dist": "yarn rollup --config rollup.config.js",
-    "build": "yarn build:clean && yarn build:dist && yarn build:typescript && yarn build:typescript:node16 && yarn build:copy-esm-packagejson",
+    "build": "yarn build:clean && yarn build:dist && yarn build:typescript && yarn build:typescript:esm && yarn build:copy-esm-packagejson",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
