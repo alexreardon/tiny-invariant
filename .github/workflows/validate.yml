@@ -14,17 +14,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '18'
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Restore dependency cache
-        uses: actions/cache@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          node-version-file: '.nvmrc'
+          # Using node action to manage caching node_modules
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
