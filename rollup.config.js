@@ -46,7 +46,20 @@ export default [
       file: 'dist/esm/tiny-invariant.js',
       format: 'esm',
     },
-    plugins: [typescript({ module: 'ESNext' })],
+    plugins: [
+      typescript({ module: 'ESNext' }),
+      // https://github.com/rollup/rollup/blob/69ff4181e701a0fe0026d0ba147f31bc86beffa8/build-plugins/emit-module-package-file.ts
+      {
+        generateBundle() {
+          this.emitFile({
+            fileName: 'package.json',
+            source: `{ "type": "module" }\n`,
+            type: 'asset',
+          });
+        },
+        name: 'emit-module-package-file',
+      },
+    ],
   },
   // CommonJS build
   {
