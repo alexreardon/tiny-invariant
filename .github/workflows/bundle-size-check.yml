@@ -10,13 +10,18 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
+          # Using node action to manage caching node_modules
+          cache: 'yarn'
 
       # The size limit github action
-      - uses: andresz1/size-limit-action@v1
+      - name: Run size limit github action
+        uses: andresz1/size-limit-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
