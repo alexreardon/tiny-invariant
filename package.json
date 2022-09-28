@@ -47,7 +47,7 @@
     {
       "path": "dist/tiny-invariant.esm.js",
       "import": "foo",
-      "limit": "104B"
+      "limit": "112B"
     }
   ],
   "scripts": {
