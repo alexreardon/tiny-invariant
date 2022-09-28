@@ -39,6 +39,15 @@ export default [
     },
     plugins: [typescript({ module: 'ESNext' })],
   },
+  // ESM build for "module": "node16" TypeScript projects (https://github.com/alexreardon/tiny-invariant/issues/144)
+  {
+    input,
+    output: {
+      file: 'dist/esm/tiny-invariant.js',
+      format: 'esm',
+    },
+    plugins: [typescript({ module: 'ESNext' })],
+  },
   // CommonJS build
   {
     input,
