@@ -23,7 +23,10 @@
   "exports": {
     ".": {
       "import": "./dist/esm/tiny-invariant.js",
-      "default": "./dist/tiny-invariant.cjs.js"
+      "default": {
+        "types": "./dist/tiny-invariant.d.ts",
+        "default": "./dist/tiny-invariant.cjs.js"
+      }
     }
   },
   "sideEffects": false,
