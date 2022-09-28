@@ -22,6 +22,7 @@
   "types": "dist/tiny-invariant.d.ts",
   "exports": {
     ".": {
+      "module": "./dist/esm/tiny-invariant.js",
       "import": "./dist/esm/tiny-invariant.js",
       "default": "./dist/tiny-invariant.cjs.js"
     }
