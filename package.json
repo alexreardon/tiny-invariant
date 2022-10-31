@@ -69,7 +69,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-replace": "^5.0.1",
     "@rollup/plugin-typescript": "^8.5.0",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/jest": "^29.1.1",
