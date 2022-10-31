@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-typescript": "^9.0.2",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/jest": "^29.1.1",
     "@types/rollup": "^0.54.0",
