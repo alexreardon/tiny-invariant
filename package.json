@@ -61,7 +61,6 @@
     "typescript:check": "tsc --noEmit src/*.ts test/*.ts",
     "validate": "npm run prettier:check && npm run typescript:check",
     "build:clean": "rimraf dist",
-    "build:flow": "cp src/tiny-invariant.js.flow dist/tiny-invariant.cjs.js.flow",
     "build:typescript": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist",
     "build:typescript:esm": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist/esm",
     "build:dist": "rollup --config rollup.config.js",
