@@ -22,11 +22,11 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           # Using node action to manage caching node_modules
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       # Validates project
       - name: Typescript + prettier checks
-        run: yarn validate
+        run: npm run validate
