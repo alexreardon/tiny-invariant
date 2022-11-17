@@ -1,8 +1,8 @@
 {
-  "name": "compile-typescript-cjs",
+  "name": "compile-typescript-cjs-run-node",
   "private": true,
   "scripts": {
-    "execute-scenario": "tsc"
+    "execute-scenario": "tsc && node ./dist/test.cjs"
   },
   "devDependencies": {
     "tiny-invariant": "*",

@@ -1,8 +1,8 @@
 {
-  "name": "compile-typescript-node16",
+  "name": "compile-typescript-node16-run-node",
   "private": true,
   "scripts": {
-    "execute-scenario": "tsc"
+    "execute-scenario": "tsc && node ./dist/test.mjs"
   },
   "devDependencies": {
     "tiny-invariant": "*",

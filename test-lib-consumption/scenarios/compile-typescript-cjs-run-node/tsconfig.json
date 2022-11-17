@@ -8,8 +8,11 @@
     "types": [],
 
     /* Emit */
+    "declaration": true,
+    "declarationMap": true,
     "importsNotUsedAsValues": "error",
-    "noEmit": true,
+    "outDir": "./dist",
+    "sourceMap": true,
 
     /* Interop Constraints */
     "esModuleInterop": true,
