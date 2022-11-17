@@ -1,8 +1,8 @@
 {
-  "name": "run-node-cjs",
+  "name": "run-node-esm",
   "private": true,
   "scripts": {
-    "execute-scenario": "node ./src/test.cjs"
+    "execute-scenario": "node ./src/test.mjs"
   },
   "devDependencies": {
     "tiny-invariant": "*"
