@@ -1,8 +1,18 @@
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
 packages:
+  'tiny-invariant':
+    access: $all
+    publish: $all
   '@*/*':
     access: $all
     publish: $all
+    proxy: npmjs
   '**':
     access: $all
     publish: $all
-log: { type: stdout, format: pretty, level: http }
+    proxy: npmjs
+
+log: { type: stdout, format: pretty, level: trace }

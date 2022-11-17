@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 import * as verdaccio from 'verdaccio';
-import { $ } from 'zx';
+import { $, ProcessOutput } from 'zx';
 
 import { fsUtil } from './fs-util.mjs';
 import { networkUtil } from './network-util.mjs';
@@ -18,15 +18,10 @@ const PATHS = {
   VERDACCIO_TEMP_FOLDER: path.join(__dirname, '.verdaccio'),
   VERDACCIO_TEMP_FOLDER_CACHE: path.join(__dirname, '.verdaccio', 'cache'),
   VERDACCIO_TEMP_FOLDER_STORAGE: path.join(__dirname, '.verdaccio', 'storage'),
+  SCENARIOS_DIRECTORY: path.join(__dirname, 'scenarios'),
 } as const;
 
-type Logger = {
-  info: typeof console.info;
-  warn: typeof console.warn;
-  error: typeof console.error;
-};
-
-const logger: Logger = {
+const logger = {
   info: console.info,
   warn: console.warn,
   error: console.error,
@@ -54,12 +49,27 @@ async function startVerdaccioServer() {
     app.on('error', reject);
   });
 
-  return { verdaccioPort: port };
+  function closeServer(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      app.close((err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
+  return {
+    port,
+    closeServer,
+  };
 }
 
 async function publishToVerdaccio(verdaccioPort: number) {
   // Check if .npmrc file in the root of the package exists and if so, abort
-  const npmrcExists = await fsUtil.checkIfFileExists(PATHS.PACKAGE_ROOT_NPMRC);
+  const npmrcExists = await fsUtil.checkIfDirentExists(PATHS.PACKAGE_ROOT_NPMRC);
   if (npmrcExists) {
     throw new Error(
       `could not publish to verdaccio, reason: a .npmrc file exists in the package root, but we need to overwrite its contents --> aborted!`,
@@ -72,14 +82,12 @@ async function publishToVerdaccio(verdaccioPort: number) {
      * See https://twitter.com/verdaccio_npm/status/1357798427283910660?s=21.
      * That's why we create a temporary .npmrc file with the registry and a fake authToken set.
      */
-    await fs.promises.writeFile(
-      PATHS.PACKAGE_ROOT_NPMRC,
-      `
-registry=http://localhost:${verdaccioPort}/
-//localhost:${verdaccioPort}/:_authToken=fake
-    `,
-      { encoding: 'utf8' },
-    );
+    const lines = [
+      `registry=http://localhost:${verdaccioPort}/`,
+      `//localhost:${verdaccioPort}/:_authToken=fake`,
+    ];
+    const npmrcContent = lines.join('\n');
+    await fs.promises.writeFile(PATHS.PACKAGE_ROOT_NPMRC, npmrcContent, { encoding: 'utf8' });
 
     // Publish to Verdaccio
     $.cwd = PATHS.PACKAGE_ROOT_DIRECTORY;
@@ -90,15 +98,58 @@ registry=http://localhost:${verdaccioPort}/
   }
 }
 
-try {
-  const { verdaccioPort } = await startVerdaccioServer();
-  await publishToVerdaccio(verdaccioPort);
-} finally {
-  await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
+async function runScenarios(verdaccioPort: number) {
+  let scenarioDirectories = await fs.promises.readdir(PATHS.SCENARIOS_DIRECTORY, {
+    withFileTypes: true,
+  });
+  scenarioDirectories = scenarioDirectories.filter((dirent) => dirent.isDirectory());
+
+  for (const scenarioDirectory of scenarioDirectories) {
+    const pathToDirectory = path.join(PATHS.SCENARIOS_DIRECTORY, scenarioDirectory.name);
+    const pathToNpmrcFile = path.join(pathToDirectory, '.npmrc');
+    const lines = [
+      `registry=http://localhost:${verdaccioPort}/`,
+      `//localhost:${verdaccioPort}/:_authToken=fake`,
+    ];
+    const npmrcContent = lines.join('\n');
+    await fs.promises.writeFile(pathToNpmrcFile, npmrcContent, { encoding: 'utf8' });
+
+    $.cwd = pathToDirectory;
+    await $`npm install --package-lock=false`;
+    try {
+      await $`npm run execute-scenario`;
+    } catch (err) {
+      if (err instanceof ProcessOutput) {
+        logger.error(`scenario failed! rethrowing error...`);
+      } else {
+        logger.error(`unexpected error occured!`);
+      }
+
+      throw err;
+    }
+  }
 }
 
-/*
- * TODO
- * - publish tiny-invariant to Verdaccio
- * - run different scenarios which pull that package from Verdaccio and do a build or run with it (e.g. Node CJS Run; Node ESM Run; TypeScript CJS Compile; ...)
- */
+let verdaccioServer;
+try {
+  // remove .verdaccio folder (could be present from a previous run)
+  const verdaccioFolderExists = await fsUtil.checkIfDirentExists(PATHS.VERDACCIO_TEMP_FOLDER);
+  if (verdaccioFolderExists) {
+    await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
+  }
+
+  // start verdaccio and publish tiny-invariant to it
+  verdaccioServer = await startVerdaccioServer();
+  await publishToVerdaccio(verdaccioServer.port);
+
+  // run the scenarios
+  await runScenarios(verdaccioServer.port);
+} finally {
+  // in case we started a verdaccio server, stop it
+  if (verdaccioServer) {
+    await verdaccioServer.closeServer();
+  }
+
+  // clean up
+  await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
+}

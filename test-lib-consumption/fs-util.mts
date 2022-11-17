@@ -1,15 +1,15 @@
 import fs from 'node:fs';
 
 export const fsUtil = {
-  checkIfFileExists,
+  checkIfDirentExists,
 };
 
-async function checkIfFileExists(path: string): Promise<boolean> {
+async function checkIfDirentExists(path: string): Promise<boolean> {
   try {
     await fs.promises.stat(path);
     return true;
   } catch (err: unknown) {
-    if (isFSFileNotFoundError(err)) {
+    if (isFSDirentNotFoundError(err)) {
       return false;
     }
 
@@ -18,11 +18,11 @@ async function checkIfFileExists(path: string): Promise<boolean> {
   }
 }
 
-type FSFileNotFoundError = {
+type FSDirentNotFoundError = {
   code: 'ENOENT';
 };
 
-function isFSFileNotFoundError(err: unknown): err is FSFileNotFoundError {
+function isFSDirentNotFoundError(err: unknown): err is FSDirentNotFoundError {
   return (
     typeof err === 'object' &&
     err !== null &&

@@ -1,0 +1,11 @@
+{
+  "name": "compile-typescript-cjs",
+  "private": true,
+  "scripts": {
+    "execute-scenario": "tsc"
+  },
+  "devDependencies": {
+    "tiny-invariant": "*",
+    "typescript": "4.8.4"
+  }
+}
