@@ -1,13 +1,13 @@
 import net from 'node:net';
 
 export const networkUtil = {
-  getRandomPort,
+  getRandomFreePort,
 };
 
 /**
  * Based on https://github.com/nestjs/nest/blob/8e3af065bb9abbecc91b4e6068c8e205ef79d165/integration/nest-application/get-url/e2e/utils.ts#L5
  */
-async function getRandomPort(): Promise<number> {
+async function getRandomFreePort(): Promise<number> {
   const server = net.createServer();
   return new Promise<number>((resolve) => {
     server.listen(0, () => {

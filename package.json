@@ -56,7 +56,7 @@
   "scripts": {
     "test": "jest",
     "test:size": "npm run build && size-limit",
-    "test:lib-consumption": "npx ts-node --esm --project ./test-lib-consumption/tsconfig.json ./test-lib-consumption/run-scenarios.mts",
+    "test:lib-consumption": "npx ts-node --esm --project ./test-lib-consumption/tsconfig.json ./test-lib-consumption/main.mts",
     "prettier:write": "prettier --debug-check src/** test/**",
     "prettier:check": "prettier --write src/** test/**",
     "typescript:check": "tsc --noEmit src/*.ts test/*.ts",

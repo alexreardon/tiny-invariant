@@ -27,7 +27,7 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": ["*.mts"],
+  "include": ["*.mts", "./helpers/*.mts"],
   "ts-node": {
     // Enable that ts-node loads all files specified by this tsconfig.
     "files": true

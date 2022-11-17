@@ -6,8 +6,8 @@ import url from 'node:url';
 import * as verdaccio from 'verdaccio';
 import { $, ProcessOutput } from 'zx';
 
-import { fsUtil } from './fs-util.mjs';
-import { networkUtil } from './network-util.mjs';
+import { fsUtil } from './helpers/fs-util.mjs';
+import { networkUtil } from './helpers/network-util.mjs';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -39,7 +39,7 @@ async function startVerdaccioServer() {
   };
 
   const app = await verdaccio.runServer(config);
-  const port = await networkUtil.getRandomPort();
+  const port = await networkUtil.getRandomFreePort();
   await new Promise<void>((resolve, reject) => {
     logger.info(`[Verdaccio] starting server on port ${port}`);
     app.listen(port, function listeningListener() {

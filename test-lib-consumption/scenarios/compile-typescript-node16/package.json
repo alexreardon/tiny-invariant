@@ -1,5 +1,5 @@
 {
-  "name": "compile-typescript-cjs",
+  "name": "compile-typescript-node16",
   "private": true,
   "scripts": {
     "execute-scenario": "tsc"
