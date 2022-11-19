@@ -56,7 +56,7 @@
   "scripts": {
     "test": "jest",
     "test:size": "npm run build && size-limit",
-    "test:lib-consumption": "npx ts-node --esm --project ./test-lib-consumption/tsconfig.json ./test-lib-consumption/main.mts",
+    "test:lib-consumption": "vitest --config vitest-lib-consumption.config.ts run",
     "prettier:write": "prettier --debug-check src/** test/**",
     "prettier:check": "prettier --write src/** test/**",
     "typescript:check": "tsc --noEmit src/*.ts test/*.ts",
@@ -89,6 +89,7 @@
     "tslib": "^2.4.0",
     "typescript": "^4.8.4",
     "verdaccio": "^5.16.3",
+    "vitest": "^0.25.2",
     "zx": "^7.1.1"
   }
 }

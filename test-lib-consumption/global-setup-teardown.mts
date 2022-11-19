@@ -1,31 +1,13 @@
 import type { Config } from '@verdaccio/types';
 import YAML from 'js-yaml';
 import fs from 'node:fs';
-import path from 'node:path';
-import url from 'node:url';
 import * as verdaccio from 'verdaccio';
-import { $, ProcessOutput } from 'zx';
+import { $ } from 'zx';
 
+import { PATHS } from './helpers/constants.mjs';
 import { fsUtil } from './helpers/fs-util.mjs';
+import { logger } from './helpers/logger.mjs';
 import { networkUtil } from './helpers/network-util.mjs';
-
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-
-const PATHS = {
-  PACKAGE_ROOT_DIRECTORY: path.join(__dirname, '..'),
-  PACKAGE_ROOT_NPMRC: path.join(__dirname, '..', '.npmrc'),
-  VERDACCIO_CONFIG: path.join(__dirname, 'verdaccio-config.yaml'),
-  VERDACCIO_TEMP_FOLDER: path.join(__dirname, '.verdaccio'),
-  VERDACCIO_TEMP_FOLDER_CACHE: path.join(__dirname, '.verdaccio', 'cache'),
-  VERDACCIO_TEMP_FOLDER_STORAGE: path.join(__dirname, '.verdaccio', 'storage'),
-  SCENARIOS_DIRECTORY: path.join(__dirname, 'scenarios'),
-} as const;
-
-const logger = {
-  info: console.info,
-  warn: console.warn,
-  error: console.error,
-};
 
 async function startVerdaccioServer() {
   // Verdaccio initialization with its Node.js API is based on https://verdaccio.org/docs/verdaccio-programmatically#using-the-module-api
@@ -98,40 +80,12 @@ async function publishToVerdaccio(verdaccioPort: number) {
   }
 }
 
-async function runScenarios(verdaccioPort: number) {
-  let scenarioDirectories = await fs.promises.readdir(PATHS.SCENARIOS_DIRECTORY, {
-    withFileTypes: true,
-  });
-  scenarioDirectories = scenarioDirectories.filter((dirent) => dirent.isDirectory());
+let verdaccioServer: {
+  port: number;
+  closeServer: () => Promise<void>;
+};
 
-  for (const scenarioDirectory of scenarioDirectories) {
-    const pathToDirectory = path.join(PATHS.SCENARIOS_DIRECTORY, scenarioDirectory.name);
-    const pathToNpmrcFile = path.join(pathToDirectory, '.npmrc');
-    const lines = [
-      `registry=http://localhost:${verdaccioPort}/`,
-      `//localhost:${verdaccioPort}/:_authToken=fake`,
-    ];
-    const npmrcContent = lines.join('\n');
-    await fs.promises.writeFile(pathToNpmrcFile, npmrcContent, { encoding: 'utf8' });
-
-    $.cwd = pathToDirectory;
-    await $`npm install --package-lock=false`;
-    try {
-      await $`npm run execute-scenario`;
-    } catch (err) {
-      if (err instanceof ProcessOutput) {
-        logger.error(`scenario failed! rethrowing error...`);
-      } else {
-        logger.error(`unexpected error occured!`);
-      }
-
-      throw err;
-    }
-  }
-}
-
-let verdaccioServer;
-try {
+export async function setup() {
   // remove .verdaccio folder (could be present from a previous run)
   const verdaccioFolderExists = await fsUtil.checkIfDirentExists(PATHS.VERDACCIO_TEMP_FOLDER);
   if (verdaccioFolderExists) {
@@ -142,9 +96,10 @@ try {
   verdaccioServer = await startVerdaccioServer();
   await publishToVerdaccio(verdaccioServer.port);
 
-  // run the scenarios
-  await runScenarios(verdaccioServer.port);
-} finally {
+  globalThis.verdaccioPort = verdaccioServer.port;
+}
+
+export async function teardown() {
   // in case we started a verdaccio server, stop it
   if (verdaccioServer) {
     await verdaccioServer.closeServer();

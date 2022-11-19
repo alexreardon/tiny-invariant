@@ -7,3 +7,5 @@ declare module 'verdaccio' {
   import type { Server } from 'node:http';
   export function runServer(config?: string | Config): Promise<Server>;
 }
+
+declare var verdaccioPort: number;
