@@ -1,5 +1,4 @@
 import type { Config } from '@verdaccio/types';
-import YAML from 'js-yaml';
 import fs from 'node:fs';
 import * as verdaccio from 'verdaccio';
 import { $ } from 'zx';
@@ -19,7 +18,7 @@ export async function setup() {
   const verdaccioPort = await networkUtil.getRandomFreePort();
   verdaccioServer = await startVerdaccioServer(verdaccioPort);
 
-  /**
+  /*
    * Publish to Verdaccio
    *
    * We set the registry URL to point to Verdaccio and a fake auth token (otherwise some package
@@ -50,17 +49,41 @@ async function startVerdaccioServer(portToStartOn: number): Promise<VerdaccioSer
   // Remove .verdaccio folder (could be present from a previous run)
   await cleanupVerdaccioDirectory();
 
-  // Verdaccio initialization with its Node.js API is based on https://verdaccio.org/docs/verdaccio-programmatically#using-the-module-api
-  const verdaccioConfigFile = await fs.promises.readFile(PATHS.VERDACCIO_CONFIG, 'utf8');
-  const verdaccioConfig = YAML.load(verdaccioConfigFile) as Config;
+  /*
+   * Verdaccio initialization with its Node.js API is based on https://verdaccio.org/docs/verdaccio-programmatically#using-the-module-api.
+   * The type "Config" has some properties defined as required which are'nt in reality, so omit them.
+   */
   const cache = PATHS.VERDACCIO_TEMP_FOLDER_CACHE;
-  const config: Config = {
-    ...verdaccioConfig,
+  const config: Omit<
+    Config,
+    'server_id' | 'secret' | 'checkSecretKey' | 'getMatchedPackagesSpec' | 'security'
+  > = {
+    uplinks: {
+      npmjs: {
+        url: 'https://registry.npmjs.org/',
+      },
+    },
+    packages: {
+      'tiny-invariant': {
+        access: ['$all'],
+        publish: ['$all'],
+      },
+      '@*/*': {
+        access: ['$all'],
+        publish: ['$all'],
+        proxy: ['npmjs'],
+      },
+      '**': {
+        access: ['$all'],
+        publish: ['$all'],
+        proxy: ['npmjs'],
+      },
+    },
     storage: PATHS.VERDACCIO_TEMP_FOLDER_STORAGE,
     self_path: cache,
   };
 
-  const app = await verdaccio.runServer(config);
+  const app = await verdaccio.runServer(config as Config);
   await new Promise<void>((resolve, reject) => {
     console.info(`[Verdaccio] starting server on port ${portToStartOn}`);
     app.listen(portToStartOn, function listeningListener() {
