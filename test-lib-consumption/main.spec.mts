@@ -13,13 +13,8 @@ scenarioDirectories = scenarioDirectories.filter((dirent) => dirent.isDirectory(
 for (const scenarioDirectory of scenarioDirectories) {
   it(`scenario "${scenarioDirectory.name}"`, async () => {
     const pathToDirectory = path.join(PATHS.SCENARIOS_DIRECTORY, scenarioDirectory.name);
-
     $.cwd = pathToDirectory;
     await $`npm install --package-lock=false`;
-    try {
-      await $`npm run execute-scenario`;
-    } catch (err) {
-      throw err;
-    }
+    await $`npm run execute-scenario`;
   });
 }

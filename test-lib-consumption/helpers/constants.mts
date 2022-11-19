@@ -5,7 +5,6 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 export const PATHS = {
   PACKAGE_ROOT_DIRECTORY: path.join(__dirname, '..', '..'),
-  PACKAGE_ROOT_NPMRC: path.join(__dirname, '..', '..', '.npmrc'),
   VERDACCIO_CONFIG: path.join(__dirname, '..', 'verdaccio-config.yaml'),
   VERDACCIO_TEMP_FOLDER: path.join(__dirname, '..', '.verdaccio'),
   VERDACCIO_TEMP_FOLDER_CACHE: path.join(__dirname, '..', '.verdaccio', 'cache'),

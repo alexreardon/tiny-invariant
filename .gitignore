@@ -18,4 +18,3 @@ npm-debug.log.*
 
 # files for the lib-consumption tests
 test-lib-consumption/.verdaccio
-test-lib-consumption/scenarios/*/.npmrc

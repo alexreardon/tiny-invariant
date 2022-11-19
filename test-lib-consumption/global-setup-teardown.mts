@@ -6,10 +6,50 @@ import { $ } from 'zx';
 
 import { PATHS } from './helpers/constants.mjs';
 import { fsUtil } from './helpers/fs-util.mjs';
-import { logger } from './helpers/logger.mjs';
 import { networkUtil } from './helpers/network-util.mjs';
 
-async function startVerdaccioServer() {
+type VerdaccioServer = {
+  closeAndCleanup: () => Promise<void>;
+};
+
+let verdaccioServer: VerdaccioServer | undefined;
+
+export async function setup() {
+  // Start verdaccio
+  const verdaccioPort = await networkUtil.getRandomFreePort();
+  verdaccioServer = await startVerdaccioServer(verdaccioPort);
+
+  /**
+   * Publish to Verdaccio
+   *
+   * We set the registry URL to point to Verdaccio and a fake auth token (otherwise some package
+   * managers would complain, see https://twitter.com/verdaccio_npm/status/1357798427283910660?s=21).
+   *
+   * These process.env variables will also be active in the test cases, so any "npm install" there
+   * will fetch the dependencies from Verdaccio.
+   */
+  process.env.npm_config_registry = `http://localhost:${verdaccioPort}/`;
+  process.env.npm_config__auth = `fake-auth-token`;
+  await publishToVerdaccio();
+}
+
+export async function teardown() {
+  if (verdaccioServer) {
+    await verdaccioServer.closeAndCleanup();
+  }
+}
+
+async function startVerdaccioServer(portToStartOn: number): Promise<VerdaccioServer> {
+  async function cleanupVerdaccioDirectory() {
+    const verdaccioFolderExists = await fsUtil.checkIfDirentExists(PATHS.VERDACCIO_TEMP_FOLDER);
+    if (verdaccioFolderExists) {
+      await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
+    }
+  }
+
+  // Remove .verdaccio folder (could be present from a previous run)
+  await cleanupVerdaccioDirectory();
+
   // Verdaccio initialization with its Node.js API is based on https://verdaccio.org/docs/verdaccio-programmatically#using-the-module-api
   const verdaccioConfigFile = await fs.promises.readFile(PATHS.VERDACCIO_CONFIG, 'utf8');
   const verdaccioConfig = YAML.load(verdaccioConfigFile) as Config;
@@ -21,11 +61,10 @@ async function startVerdaccioServer() {
   };
 
   const app = await verdaccio.runServer(config);
-  const port = await networkUtil.getRandomFreePort();
   await new Promise<void>((resolve, reject) => {
-    logger.info(`[Verdaccio] starting server on port ${port}`);
-    app.listen(port, function listeningListener() {
-      logger.info(`[Verdaccio] server started!`);
+    console.info(`[Verdaccio] starting server on port ${portToStartOn}`);
+    app.listen(portToStartOn, function listeningListener() {
+      console.info(`[Verdaccio] server started!`);
       resolve();
     });
     app.on('error', reject);
@@ -44,51 +83,14 @@ async function startVerdaccioServer() {
   }
 
   return {
-    port,
-    closeServer,
+    closeAndCleanup: async () => {
+      await closeServer();
+      await cleanupVerdaccioDirectory();
+    },
   };
 }
 
 async function publishToVerdaccio() {
   $.cwd = PATHS.PACKAGE_ROOT_DIRECTORY;
-  await $`npm publish`;
-}
-
-let verdaccioServer: {
-  port: number;
-  closeServer: () => Promise<void>;
-};
-
-export async function setup() {
-  // Remove .verdaccio folder (could be present from a previous run)
-  const verdaccioFolderExists = await fsUtil.checkIfDirentExists(PATHS.VERDACCIO_TEMP_FOLDER);
-  if (verdaccioFolderExists) {
-    await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
-  }
-
-  // Start verdaccio
-  verdaccioServer = await startVerdaccioServer();
-
-  /**
-   * Publish to Verdaccio
-   *
-   * For that we set the registry URL to point to Verdaccio and a fake auth token (package managers cry otherwise).
-   * See https://twitter.com/verdaccio_npm/status/1357798427283910660?s=21.
-   *
-   * These process.env variables will also be active in the test cases, so any "npm install"
-   * there will fetch the dependencies from Verdaccio.
-   */
-  process.env.npm_config_registry = `http://localhost:${verdaccioServer.port}/`;
-  process.env.npm_config__auth = `fake-auth-token`;
-  await publishToVerdaccio();
-}
-
-export async function teardown() {
-  // in case we started a verdaccio server, stop it
-  if (verdaccioServer) {
-    await verdaccioServer.closeServer();
-  }
-
-  // clean up
-  await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
+  await $`yarn publish`;
 }
