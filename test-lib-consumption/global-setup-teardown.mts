@@ -49,35 +49,9 @@ async function startVerdaccioServer() {
   };
 }
 
-async function publishToVerdaccio(verdaccioPort: number) {
-  // Check if .npmrc file in the root of the package exists and if so, abort
-  const npmrcExists = await fsUtil.checkIfDirentExists(PATHS.PACKAGE_ROOT_NPMRC);
-  if (npmrcExists) {
-    throw new Error(
-      `could not publish to verdaccio, reason: a .npmrc file exists in the package root, but we need to overwrite its contents --> aborted!`,
-    );
-  }
-
-  try {
-    /**
-     * Unfortunately, NPM needs a fake authToken to allow publishing to Verdaccio.
-     * See https://twitter.com/verdaccio_npm/status/1357798427283910660?s=21.
-     * That's why we create a temporary .npmrc file with the registry and a fake authToken set.
-     */
-    const lines = [
-      `registry=http://localhost:${verdaccioPort}/`,
-      `//localhost:${verdaccioPort}/:_authToken=fake`,
-    ];
-    const npmrcContent = lines.join('\n');
-    await fs.promises.writeFile(PATHS.PACKAGE_ROOT_NPMRC, npmrcContent, { encoding: 'utf8' });
-
-    // Publish to Verdaccio
-    $.cwd = PATHS.PACKAGE_ROOT_DIRECTORY;
-    await $`npm publish`;
-  } finally {
-    // Remove temporary .npmrc file
-    await fs.promises.rm(PATHS.PACKAGE_ROOT_NPMRC);
-  }
+async function publishToVerdaccio() {
+  $.cwd = PATHS.PACKAGE_ROOT_DIRECTORY;
+  await $`npm publish`;
 }
 
 let verdaccioServer: {
@@ -86,17 +60,27 @@ let verdaccioServer: {
 };
 
 export async function setup() {
-  // remove .verdaccio folder (could be present from a previous run)
+  // Remove .verdaccio folder (could be present from a previous run)
   const verdaccioFolderExists = await fsUtil.checkIfDirentExists(PATHS.VERDACCIO_TEMP_FOLDER);
   if (verdaccioFolderExists) {
     await fs.promises.rm(PATHS.VERDACCIO_TEMP_FOLDER, { recursive: true });
   }
 
-  // start verdaccio and publish tiny-invariant to it
+  // Start verdaccio
   verdaccioServer = await startVerdaccioServer();
-  await publishToVerdaccio(verdaccioServer.port);
 
-  process.env.VERDACCIO_PORT = `${verdaccioServer.port}`;
+  /**
+   * Publish to Verdaccio
+   *
+   * For that we set the registry URL to point to Verdaccio and a fake auth token (package managers cry otherwise).
+   * See https://twitter.com/verdaccio_npm/status/1357798427283910660?s=21.
+   *
+   * These process.env variables will also be active in the test cases, so any "npm install"
+   * there will fetch the dependencies from Verdaccio.
+   */
+  process.env.npm_config_registry = `http://localhost:${verdaccioServer.port}/`;
+  process.env.npm_config__auth = `fake-auth-token`;
+  await publishToVerdaccio();
 }
 
 export async function teardown() {

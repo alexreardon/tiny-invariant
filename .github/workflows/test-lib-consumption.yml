@@ -28,5 +28,4 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        # Need to run these tests with NPM because yarn classic makes troubles publishing into the private Verdaccio Repository
-        run: npm run test:lib-consumption
+        run: yarn test:lib-consumption
