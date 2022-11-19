@@ -96,7 +96,7 @@ export async function setup() {
   verdaccioServer = await startVerdaccioServer();
   await publishToVerdaccio(verdaccioServer.port);
 
-  globalThis.verdaccioPort = verdaccioServer.port;
+  process.env.VERDACCIO_PORT = `${verdaccioServer.port}`;
 }
 
 export async function teardown() {

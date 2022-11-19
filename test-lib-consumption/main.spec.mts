@@ -5,12 +5,15 @@ import { it } from 'vitest';
 
 import { PATHS } from './helpers/constants.mjs';
 
+if (!process.env.VERDACCIO_PORT) {
+  throw new Error(`VERDACCIO_PORT is not defined`);
+}
+const verdaccioPort = Number(process.env.VERDACCIO_PORT);
+
 let scenarioDirectories = fs.readdirSync(PATHS.SCENARIOS_DIRECTORY, {
   withFileTypes: true,
 });
 scenarioDirectories = scenarioDirectories.filter((dirent) => dirent.isDirectory());
-
-const verdaccioPort = globalThis.verdaccioPort;
 
 for (const scenarioDirectory of scenarioDirectories) {
   it(`scenario "${scenarioDirectory.name}"`, async () => {

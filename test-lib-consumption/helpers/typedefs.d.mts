@@ -8,4 +8,8 @@ declare module 'verdaccio' {
   export function runServer(config?: string | Config): Promise<Server>;
 }
 
-declare var verdaccioPort: number;
+declare namespace NodeJS {
+  export interface ProcessEnv {
+    VERDACCIO_PORT: string;
+  }
+}
