@@ -1,4 +1,4 @@
-name: Test consuming the package in different scenarios
+name: Test consuming the package in various scenarios
 
 on:
   push:
