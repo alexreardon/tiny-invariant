@@ -22,10 +22,11 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           # Using node action to manage caching node_modules
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Run tests
+        # Need to run these tests with NPM because yarn classic makes troubles publishing into the private Verdaccio Repository
         run: npm run test:lib-consumption
