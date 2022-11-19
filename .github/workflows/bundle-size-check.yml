@@ -18,7 +18,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           # Using node action to manage caching node_modules
-          cache: 'npm'
+          cache: 'yarn'
 
       # The size limit github action
       - name: Run size limit github action

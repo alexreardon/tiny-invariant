@@ -22,10 +22,10 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           # Using node action to manage caching node_modules
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Run tests
-        run: npm run test
+        run: yarn test

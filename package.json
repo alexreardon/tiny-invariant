@@ -54,19 +54,19 @@
     }
   ],
   "scripts": {
-    "test": "jest",
-    "test:size": "npm run build && size-limit",
+    "test": "yarn jest",
+    "test:size": "yarn build && yarn size-limit",
     "test:lib-consumption": "vitest --config vitest-lib-consumption.config.ts run",
-    "prettier:write": "prettier --debug-check src/** test/**",
-    "prettier:check": "prettier --write src/** test/**",
-    "typescript:check": "tsc --noEmit src/*.ts test/*.ts",
-    "validate": "npm run prettier:check && npm run typescript:check",
+    "prettier:write": "yarn prettier --debug-check src/** test/**",
+    "prettier:check": "yarn prettier --write src/** test/**",
+    "typescript:check": "yarn tsc --noEmit src/*.ts test/*.ts",
+    "validate": "yarn prettier:check && yarn typescript:check",
     "build:clean": "rimraf dist",
     "build:typescript": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist",
     "build:typescript:esm": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist/esm",
-    "build:dist": "rollup --config rollup.config.js",
-    "build": "npm run build:clean && npm run build:dist && npm run build:typescript && npm run build:typescript:esm",
-    "prepublishOnly": "npm run build"
+    "build:dist": "yarn rollup --config rollup.config.js",
+    "build": "yarn build:clean && yarn build:dist && yarn build:typescript && yarn build:typescript:esm",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^4.0.0",
