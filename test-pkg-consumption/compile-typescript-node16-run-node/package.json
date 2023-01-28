@@ -4,7 +4,7 @@
   "scripts": {
     "execute-scenario": "tsc && node ./dist/test.mjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "tiny-invariant": "*",
     "typescript": "4.8.4"
   }

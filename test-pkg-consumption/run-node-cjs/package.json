@@ -4,7 +4,7 @@
   "scripts": {
     "execute-scenario": "node ./src/test.cjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "tiny-invariant": "*"
   }
 }

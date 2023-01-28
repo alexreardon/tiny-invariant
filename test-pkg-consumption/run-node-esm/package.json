@@ -4,7 +4,7 @@
   "scripts": {
     "execute-scenario": "node ./src/test.mjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "tiny-invariant": "*"
   }
 }
