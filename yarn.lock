@@ -590,10 +590,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pkerschbaum/pkg-consumption-test@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@pkerschbaum/pkg-consumption-test/-/pkg-consumption-test-1.0.0.tgz#29a64a53315b9288414224973e62b0b32f5f3d6c"
-  integrity sha512-TTKncOWz4U1J9R5rVeJOiGR29fnE8QU+54PrOd8a6AG/XLpZHLad5Td9qMuaqbtRqPvW6rpRGu52YGxQdJQwLA==
+"@pkerschbaum/pkg-consumption-test@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@pkerschbaum/pkg-consumption-test/-/pkg-consumption-test-1.0.2.tgz#b32e74588cc6ad1592a2eba0c109f25e2eaa180f"
+  integrity sha512-sobwR7KDc8WFzIaEklklgctH/F44LK06mFeJT+qVrCKFHKojnFlFlYrlazCt/t0ZrC7LfKXh8do6p7P3pmDvaw==
   dependencies:
     "@commander-js/extra-typings" "^10.0.2"
     commander "^10.0.0"

@@ -69,7 +69,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@pkerschbaum/pkg-consumption-test": "^1.0.0",
+    "@pkerschbaum/pkg-consumption-test": "^1.0.2",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.5.0",
     "@size-limit/preset-small-lib": "^8.1.0",
