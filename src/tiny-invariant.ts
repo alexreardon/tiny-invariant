@@ -2,11 +2,14 @@ const isProduction: boolean = process.env.NODE_ENV === 'production';
 const prefix: string = 'Invariant failed';
 
 /**
- * Throw an error if the condition fails. Strip out error messages for production.
+ * __invariant__
+ * 
+ * The `invariant` function takes a value, and if the value is falsy then the `invariant` function will throw. If the value is truthy, then the function will not throw.
  *
- * @param condition A boolean condition - if falsey will thrown an error.
- * @param message The message provided to accompany the invariant. No inline default argument for message as the result is smaller.
- *
+ * @param {boolean} condition A boolean condition - if falsey will thrown an error.
+ * @param {(string|() => string)} message The message provided to accompany the invariant. Can provide a string, or a function that returns a string for cases where the message takes a fair amount of effort to compute.
+ *  
+ * @returns {asserts condition is true}
  * @example
  * ```tsx
  * import invariant from 'tiny-invariant';
@@ -17,8 +20,6 @@ const prefix: string = 'Invariant failed';
  */
 export default function invariant(
   condition: any,
-  // Can provide a string, or a function that returns a string for cases where
-  // the message takes a fair amount of effort to compute
   message?: string | (() => string),
 ): asserts condition {
   if (condition) {
