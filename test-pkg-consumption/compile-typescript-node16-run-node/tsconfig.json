@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2017",
+
+    /* Modules */
+    "module": "Node16",
+    "types": [],
+
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+    "importsNotUsedAsValues": "error",
+    "outDir": "./dist",
+    "sourceMap": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/node_modules"]
+}

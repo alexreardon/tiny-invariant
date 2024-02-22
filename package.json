@@ -56,12 +56,12 @@
   "scripts": {
     "test": "yarn jest",
     "test:size": "yarn build && yarn size-limit",
+    "test:pkg-consumption": "pkg-consumption-test --packageName=\"tiny-invariant\" --pathToScenariosDirectory=\"./test-pkg-consumption\"",
     "prettier:write": "yarn prettier --debug-check src/** test/**",
     "prettier:check": "yarn prettier --write src/** test/**",
     "typescript:check": "yarn tsc --noEmit src/*.ts test/*.ts",
     "validate": "yarn prettier:check && yarn typescript:check",
     "build:clean": "rimraf dist",
-    "build:flow": "cp src/tiny-invariant.js.flow dist/tiny-invariant.cjs.js.flow",
     "build:typescript": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist",
     "build:typescript:esm": "tsc ./src/tiny-invariant.ts --emitDeclarationOnly --declaration --outDir ./dist/esm",
     "build:dist": "yarn rollup --config rollup.config.js",
@@ -69,6 +69,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
+    "@pkerschbaum/pkg-consumption-test": "^1.0.2",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.5.0",
     "@size-limit/preset-small-lib": "^8.1.0",

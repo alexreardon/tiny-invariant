@@ -1,0 +1,10 @@
+{
+  "name": "run-node-esm",
+  "private": true,
+  "scripts": {
+    "execute-scenario": "node ./src/test.mjs"
+  },
+  "dependencies": {
+    "tiny-invariant": "*"
+  }
+}

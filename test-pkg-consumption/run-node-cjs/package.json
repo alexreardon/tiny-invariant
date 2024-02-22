@@ -1,0 +1,10 @@
+{
+  "name": "run-node-cjs",
+  "private": true,
+  "scripts": {
+    "execute-scenario": "node ./src/test.cjs"
+  },
+  "dependencies": {
+    "tiny-invariant": "*"
+  }
+}
