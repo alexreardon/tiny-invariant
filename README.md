@@ -22,7 +22,9 @@ invariant(falsyValue, 'This will throw!');
 ```
 
 ## Why `tiny-invariant`?
-`tiny-invariant` is a *tiny*, widely-supported, zero-dependency alternative to [`invariant`](https://www.npmjs.com/package/invariant). See [below](#Dropping your message for kb savings!) for details on just how compact it can get.
+`tiny-invariant` is a *tiny*, widely-supported, zero-dependency alternative to [`invariant`](https://www.npmjs.com/package/invariant). See below for details on just how compact it can get.
+
+`tiny-invariant` - when every byte counts!
 
 ## Error Messages
 
